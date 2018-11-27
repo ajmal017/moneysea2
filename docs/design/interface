@@ -1,0 +1,8 @@
+python __main__.py [] command <args>
+    parse <stockpath>:          parse one stock
+    list <type>                 list info of stocks of type, default is all
+    type                        show all stock types
+
+
+
+

@@ -1,0 +1,38 @@
+
+---common
+    ---stock_id_name_map #股票id和名字映射表
+        ---open
+        ---sha
+        ---sz
+        ---readme
+
+---holded #股票持仓记录，来自招商证券
+    ---20181127
+        ---holded-1132  #1132指上午11:32
+    ---readme
+
+---classfy
+    ---classfy.xml #行业和对应的股票列表文件，行业的np值等
+    ---typea #来自同花顺>行业>列表
+    ---typeb
+    ---readme
+
+---stocks
+    ---缩写-ID
+        ---finance
+        ---note.xml {adding, note, summary}
+    ---readme
+
+---prices
+    ---日期
+        ---时间
+    ---readme
+    ---current #链接文件，指向最近update的价格文件
+
+---default.xml {一些默认值，比如np加权值}
+
+---tmp
+
+---news
+    ---finance #业绩公告
+    ---readme

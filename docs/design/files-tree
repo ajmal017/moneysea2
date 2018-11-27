@@ -1,0 +1,15 @@
+---moneysea
+    ---fileparsers
+    ---
+
+---docs
+    ---design
+        ---architecture
+        ... ...
+
+---utils
+    ---newstock
+
+---__main__.py
+
+---Readme.md

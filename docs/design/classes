@@ -1,0 +1,155 @@
+################################################################ Overview ############################################
+
+__main__ (MoneySea2) ---|--- Globals (Instance)
+                        |
+                        |--- Core ---|
+                                  ---|
+                                  ---|
+
+----------------------------------------------------------
+stock ---|---Verbose
+         |---StocksList
+         |---ManualAdding
+        ------------------
+             |---Parser     #具体某只股票的解析
+             |---Addings    #各种增长率类
+             |---FinancialSet #财务信息集合
+
+test ---|---Test
+        |---
+
+news ---|---News
+
+fitting ---|---Fitting
+
+holded ---|---Holded
+
+utils ---|--- PriceList
+         |--- StockIdName
+         |--- Types
+
+predict ---|---Predict
+
+
+---------------------------------------------------------
+fileparsers ---|---BaseParser
+                   |--- Financial / HoldedStocks / Note / StockIdNameMap
+                     |--- FcData
+
+Config
+
+
+
+############################################################## Details ###################################################
+1. MoneySea2
+  . 初始化 Globals
+  . 输入参数处理
+  . 调用 Core 执行具体的功能
+
+2. Core
+  . 对每个功能构造相应的类，并且执行
+
+3. 功能和对应的类
+3.1 显示某只股票的详细分析信息 --- Verbose
+3.2 显示股票列表               --- StocksList
+3.3 设定增长率和Note           --- ManualAdding
+3.4 业绩预告跟进               --- News
+3.5 测试                       --- Test
+3.6 拟合                       --- Fitting
+3.7 持有股票分析               --- Holded
+3.8 未来预测                   --- Predict
+
+
+
+
+4. fileparsers
+4.1 BaseParser
+4.2 Financial / FcData
+FcData #每一季数据
+        .complete              #数据信息是否完整，如果存在"--"或者明显的错误，则complete = False
+        .year
+        .season
+        .per_share_earnings
+        .profit
+        .profit_adding
+        .profit2                #扣非净利润
+        .profit2_adding
+        .sales
+        .sales_adding
+        .per_share_asset        #每股净资产
+        .asset_yield            #净资产收益率
+        .asset_yield2           #净资产收益率-摊薄
+        .asset_debt_ratio       #资产负债比率
+        .per_share_fund         #每股资本公积金
+        .per_share_keep_profit  #每股未分配利润
+        .per_share_cash         #每股经营现金流
+        .sales_gross            #销售毛利率
+        .product_turnover       #存货周转率
+
+
+Financial #财务数据financial分析
+    - input: financial文件路径
+    - methods:
+        - get_year_report(year)
+        - getreport(year, season)
+        - latestreport()
+        - oldestreport()
+        - nextreport()
+        - previousreport()
+
+4.2 HoldedStocks / OneHoldedRecord / OneHoldedStock
+OneHoldedStock:
+        . 
+        .
+        .
+OneHoldedRecord:
+        . date
+        . time
+        . index
+        . list    #list of OneHoldedStock
+        . getstock(id)  #id is string
+
+HoldedStocks
+持股记录
+    - input: path
+    - getlist()         #获得所有的记录
+    - getlatest()       #获得最新的记录
+    - getprevious()     #获得前一个记录
+    - getnext()         #获得下一个记录
+
+5. stock
+5.1 support 类
+5.1.1 FinancialSet
+财务信息集合
+    - input: list of stock id
+    - getidlist()
+    - getlist()
+    - getfinancial(id)  #id is string
+
+
+6. utils
+6.1 Types
+股票分类
+    - input                     #classfy.xml
+    - getalltypes()
+    - getstockidlist(stype)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
