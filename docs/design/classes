@@ -1,6 +1,31 @@
 ################################################################ Overview ##############################################################
-package moneysea : MoneySea (__main__.py)      # action list, global options, help message, it calls according action
-        package actions : BaseAction ParseAction ListAction TypeAction ...
+moneysea.MoneySea (__main__.py)      # Main entry, call corresponding action and pass the arguments and options; construct help message
+         ::run()
+             actions.BaseAction > ParseAction, ListAction, TypeAction, ...
+                        ::cmd()
+                        ::summary()
+                        ::description()
+                        ::run()
+
+
+moneysea.actions.TypeAction(BaseAction)
+         ::run()
+            Globals.types() #Types class
+                    ::list()            #return list of all types
+                    ::content(stype)    #return list of stocks of one type
+                    ::gettypes(stockid) #return list of types of one stock
+
+
+moneysea.utils.Types
+         fileparsers.ClassfyXml
+         fileparsers.ClassfyIndustry
+
+
+moneysea.Globals
+         ::stockname(idx)
+         utils.StockIdName 
+         fileparsers.StockIdNameMapFile
+        
 
 ----------------------------------------------------------
 package moneysea
@@ -38,8 +63,10 @@ package moneysea
 
 ---------------------------------------------------------
 fileparsers ---|---BaseParser
-                   |--- Financial / HoldedStocks / Note / StockIdNameMap
+                   |--- Financial
                      |--- FcData
+                   |--- HoldedStocks / Note 
+                   |--- StockIdNameMap
 
 Config
 
