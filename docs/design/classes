@@ -130,6 +130,7 @@ HoldedStocks
 6. utils
 6.1 Types
 股票分类
+    一个股票可能从属于多个type
     - input                     #classfy.xml
     - getalltypes()
     - getstockidlist(stype)

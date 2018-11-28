@@ -1,8 +1,50 @@
-python __main__.py [] command <args>
-    parse <stockpath>:          parse one stock
-    list <type>                 list info of stocks of type, default is all
-    type                        show all stock types
+Usage: python __main__.py [--help] [--version] [--verbose] 
+                          command [<args>]
 
+            parse       parse one stock
+            list        list info of stocks of type, default is all
+            type        show all stock types
+            adding      manual set adding of stocks
+            news        parsing news
+            fitting     try fitting to find suitable n, p value
+            holded      holded stocks comparing
+            predict     adding predict
+            price       update prices
 
+parse [--finance] <stockpath | id>
+    DESCRIPTIONS:
+        parse stock on stockpath or of specific id, show parsing result
 
+    OPTIONS:
+        <stockpath | id>
+            path to stock data, or stock id
+        --finance
+            only show finance information
+
+list [--verbose] [<types>]
+    DESCRIPTIONS:
+        list stocks in types
+
+    OPTIONS:
+        <types>
+            type list
+        <--verbose>
+            show verbose information in list
+
+type 
+    DESCRIPTION:
+        show all stock types
+
+adding [pinyin | ID]
+    DESCRIPTION:
+        manual set adding of stocks
+    
+    OPTIONS:
+        pinyin | ID
+            pinyin or id of stock
+
+news
+    todo
+
+fitting
 
