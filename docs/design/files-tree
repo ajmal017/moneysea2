@@ -1,6 +1,10 @@
 ---moneysea
-    ---fileparsers
-    ---
+    __main__.py
+    other python files, see "classes" in design doc
+
+--- input
+
+--- output
 
 ---docs
     ---design
@@ -9,7 +13,5 @@
 
 ---utils
     ---newstock
-
----__main__.py
 
 ---Readme.md

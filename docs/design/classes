@@ -1,34 +1,39 @@
-################################################################ Overview ############################################
-
-__main__ (MoneySea2) ---|--- Globals (Instance)
-                        |
-                        |--- Core ---|
-                                  ---|
-                                  ---|
+################################################################ Overview ##############################################################
+package moneysea : MoneySea (__main__.py)      # action list, global options, help message, it calls according action
+        package actions : BaseAction ParseAction ListAction TypeAction ...
 
 ----------------------------------------------------------
-stock ---|---Verbose
-         |---StocksList
-         |---ManualAdding
-        ------------------
+package moneysea
+    Global
+
+    package stock
+        |---Verbose
+        |---StocksList
+        |---ManualAdding
              |---Parser     #具体某只股票的解析
              |---Addings    #各种增长率类
              |---FinancialSet #财务信息集合
 
-test ---|---Test
+    package test
+        |---Test
         |---
 
-news ---|---News
+    package news
+        |---News
 
-fitting ---|---Fitting
+    package fitting
+        |---Fitting
 
-holded ---|---Holded
+    package holded 
+        |---Holded
 
-utils ---|--- PriceList
-         |--- StockIdName
-         |--- Types
+    package utils
+        |--- PriceList
+        |--- StockIdName
+        |--- Types
 
-predict ---|---Predict
+    package predict
+        |---Predict
 
 
 ---------------------------------------------------------
@@ -40,28 +45,7 @@ Config
 
 
 
-############################################################## Details ###################################################
-1. MoneySea2
-  . 初始化 Globals
-  . 输入参数处理
-  . 调用 Core 执行具体的功能
-
-2. Core
-  . 对每个功能构造相应的类，并且执行
-
-3. 功能和对应的类
-3.1 显示某只股票的详细分析信息 --- Verbose
-3.2 显示股票列表               --- StocksList
-3.3 设定增长率和Note           --- ManualAdding
-3.4 业绩预告跟进               --- News
-3.5 测试                       --- Test
-3.6 拟合                       --- Fitting
-3.7 持有股票分析               --- Holded
-3.8 未来预测                   --- Predict
-
-
-
-
+############################################################## Details #################################################################
 4. fileparsers
 4.1 BaseParser
 4.2 Financial / FcData

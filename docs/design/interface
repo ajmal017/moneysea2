@@ -1,4 +1,4 @@
-Usage: python __main__.py [--help] [--version] [--verbose] 
+Usage: python moneysea [--help] [--version] [--verbose] 
                           command [<args>]
 
             parse       parse one stock
@@ -10,6 +10,7 @@ Usage: python __main__.py [--help] [--version] [--verbose]
             holded      holded stocks comparing
             predict     adding predict
             price       update prices
+            test        perform test command
 
 parse [--finance] <stockpath | id>
     DESCRIPTIONS:
@@ -46,5 +47,49 @@ adding [pinyin | ID]
 news
     todo
 
-fitting
+fitting <types> [n=x p=x]
+    DESCRIPTION:
+        draw fitting graph for the specific types
+
+    OPTIONS:
+        <types>
+            type list
+        [n=x p=x]
+
+
+holded  [old] [new]
+    DESCRIPTION:
+        compare holded stocks between old and new
+    OPTIONS:
+        old:
+            path to the record, default is the one before latest record
+        new:
+            path to the record, default is the latest record
+
+
+predict
+    todo
+
+price 
+    DESCRIPTION:
+        update prices of all stocks
+
+test <cmd> [options]
+    DESCRIPTION:
+        test command
+
+    OPTIONS:
+        <cmd>
+            test command, such as show to show all test command, default is show
+
+
+
+
+
+
+
+
+
+
+
 
