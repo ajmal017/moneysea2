@@ -1,5 +1,6 @@
 from moneysea.config import Config
 from moneysea.fileparsers.classfyxml import ClassfyXml
+from moneysea.fileparsers.classfyindustry import ClassfyIndustry
 
 class Types:
     def __init__(self):
@@ -16,31 +17,35 @@ class Types:
             if filetype == "all":
                 pass
             elif filetype == "industry":
-                content["stocks"] = ["aaaaa","bbbbb"]
-                print  content["filepath"]
+                self.setupindustrytype(content)
             else:
                 print "Warning: moneysea.utils.Types unknown filetype:", filetype
                 del alltypes[key]
 
-        print self._cfx.alltypes()
+
+    def setupindustrytype(self, content):
+        par = ClassfyIndustry(content["filepath"])
+        par.doparse()
+        content["stocks"] = par.allstocks()
+
 
 
     def listtypes(self):
-        print self._cfx.alltypes().keys()
-        pass
+        return self._cfx.alltypes().keys()
 
     def liststocks(self, stype):
-        print stype
-        pass
+        alltypes = self._cfx.alltypes()
+        return alltypes[stype]["stocks"]
 
     def stocktypes(self, stock):
         pass
 
-    def typeproperty(stype):
-        pass
+    def typeproperty(self, stype):
+        return self._cfx.alltypes()[stype]
 
 
 if __name__ == "__main__":
     types = Types()
-    types.listtypes()
-    types.liststocks("bank")
+    print types.listtypes()
+    print types.liststocks("bank")
+    print types.typeproperty("bank")

@@ -37,13 +37,51 @@ COMMAND:
             return
 
         if args[0] == "list":
-            print "list all types"
-            print types.listtypes()
+            print "%16s%16s%16s%16s"%("name","typetype","np","count")
+            print ""
+            for typ in types.listtypes():
+                prop = types.typeproperty(typ)
+                try:
+                    np = prop["np"]
+                except:
+                    np = "--"
+                try:
+                    count = len(prop["stocks"])
+                except:
+                    count = 0
+                print "%16s%16s%16s%16s"%(typ, prop["filetype"], np, count)
         elif args[0] == "dump":
-            print "dump stocks of type", args[1]
-            print types.liststocks(args[1])
+            if len(args) < 2:
+                print "please specify the stock type for dumping"
+                print self.description()
+                return 
+            try:
+                prop = types.typeproperty(args[1])
+            except:
+                print "Unknown type:", args[1]
+                return
+
+            try:
+                stocks = prop["stocks"]
+            except:
+                return
+
+            for idx in stocks:
+                print idx
+
         elif args[0] == "show":
             print "show type of stock", args[1]
             print types.stocktypes(args[1])
+        elif args[0] == "help":
+            print self.description()
         else:
             print "Unknown type command:", args[0]
+
+
+
+
+
+
+
+
+
