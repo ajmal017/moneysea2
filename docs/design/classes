@@ -25,16 +25,16 @@ actions.TypeAction(BaseAction)                          ......  action 1
 ################################################################ Globals ##############################################################
 #SINGLE INSTANCE
 Globals  #single instance, handle results from various input parsing
+    ::gettypes()                #return Types, handle to classfy files, current holded, and stocks which have data
     ::getstockidnamemapping()   #return StockIdNameMapping
-    ::gettypes()                #return Types, handle to classfy files
-    ::getholded()               #return Holded, handle to holded files
-    ::getstocks()               #return Stocks, handle to all stocks
-    :;getprices()               #return Prices, handle to prices
+    ::getprices()               #return Prices, handle to prices
     ::getdefault()              #return Default, handle to default
+    ::getinputstocks()          #return InputStocks
 
 
 ################################################################ INPUTS ##############################################################
 utils.Types
+        ::init(Globals)  #pass Globals instance for reference
         ::listtypes()
         ::liststocks(stype)
         ::stocktypes(stock)
@@ -46,7 +46,10 @@ utils.StockIdNameMapping
         ::getname(idx)
             fileparsers.StockIdNameMapFile
 
-
+utils.InputStocks
+        ::allstocks()           #a dict, key is the stockid, content is the pinyin
+        ::getpath(stockid)      #return path of the stock
+            fileparsers.InputStocksDir
 
 ################################################################ File Parsers ##############################################################
 fileparsers.BaseParser
@@ -62,6 +65,9 @@ fileparsers.ClassfyIndustry(BaseParser)
 
 fileparsers.StockIdNameMapFile(BaseParser)
         ::getmap()
+
+fileparsers.InputStocksDir
+        ::allstocks()           #a dict, key is the stockid, content is the pinyin
 
 ################################################################ Helper ##############################################################
 stock.Common

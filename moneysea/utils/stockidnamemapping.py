@@ -21,6 +21,9 @@ class StockIdNameMapping:
             name = "--"
         return name
 
+    def getmap(self):
+        return self._map
+
 
 if __name__ == "__main__":
     sin = StockIdNameMapping()

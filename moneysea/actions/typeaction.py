@@ -1,6 +1,5 @@
 
 from moneysea.actions.baseaction import BaseAction
-from moneysea.utils.types import Types
 from moneysea.globals import Globals
 
 class TypeAction(BaseAction):
@@ -33,11 +32,8 @@ COMMAND:
 
     def run(self, args, opts):
         types = Globals.get_instance().gettypes()
-        if len(args) == 0:
-            print types.listtypes()
-            return
 
-        if args[0] == "list":
+        if len(args) == 0 or args[0] == "list":
             print "%16s%16s%16s%16s"%("name","typetype","np","count")
             print ""
             for typ in types.listtypes():
@@ -71,8 +67,14 @@ COMMAND:
                 print idx, mapping.getname(idx)
 
         elif args[0] == "show":
-            print "show type of stock", args[1]
-            print types.stocktypes(args[1])
+            if len(args) < 2:
+                print "please specify the stock id to show its types"
+                print self.description()
+                return
+            mapping = Globals.get_instance().getstockidnamemapping()
+            print mapping.getname(args[1])
+            for typ in types.stocktypes(args[1]):
+                print typ + ",",
         elif args[0] == "help":
             print self.description()
         else:

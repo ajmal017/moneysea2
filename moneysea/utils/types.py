@@ -3,7 +3,8 @@ from moneysea.fileparsers.classfyxml import ClassfyXml
 from moneysea.fileparsers.classfyindustry import ClassfyIndustry
 
 class Types:
-    def __init__(self):
+    def __init__(self, gbls): # gbls => Globals
+        self._gbls = gbls
         self._cfx = ClassfyXml(Config.CLASSFY_XML)
         self._cfx.doparse()
         self.setup()
@@ -15,9 +16,11 @@ class Types:
             content = alltypes[key]
             filetype = content["filetype"]
             if filetype == "all":
-                pass
+                self.setupalltype(content)
             elif filetype == "industry":
                 self.setupindustrytype(content)
+            elif filetype == "available":
+                self.setupavailabletype(content)
             else:
                 print "Warning: moneysea.utils.Types unknown filetype:", filetype
                 del alltypes[key]
@@ -28,6 +31,13 @@ class Types:
         par.doparse()
         content["stocks"] = par.allstocks()
 
+    def setupalltype(self, content):
+        mapping = self._gbls.getstockidnamemapping()
+        content["stocks"] = mapping.getmap().keys()
+
+    def setupavailabletype(self, content):
+        input = self._gbls.getinputstocks()
+        content["stocks"] = input.allstocks().keys()
 
 
     def listtypes(self):
@@ -38,7 +48,15 @@ class Types:
         return alltypes[stype]["stocks"]
 
     def stocktypes(self, stock):
-        pass
+        alltypes = self._cfx.alltypes()
+        types = []
+        for typ in alltypes:
+            cnt = alltypes[typ]
+            if cnt["filetype"] == "all":
+                continue
+            types.append(cnt["name"])
+            
+        return types
 
     def typeproperty(self, stype):
         return self._cfx.alltypes()[stype]
