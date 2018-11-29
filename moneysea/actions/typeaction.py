@@ -73,6 +73,7 @@ COMMAND:
                 return
             mapping = Globals.get_instance().getstockidnamemapping()
             print mapping.getname(args[1])
+            print "types:       ",
             for typ in types.stocktypes(args[1]):
                 print typ + ",",
         elif args[0] == "help":

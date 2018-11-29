@@ -31,6 +31,9 @@ Globals  #single instance, handle results from various input parsing
     ::getdefault()              #return Default, handle to default
     ::getinputstocks()          #return InputStocks
 
+    ::getallholdedstocks()      #return HoldedStocks
+    ::getlatestholdedstocks()   #return OneHoldedRecord
+
 
 ################################################################ INPUTS ##############################################################
 utils.Types
@@ -51,6 +54,19 @@ utils.InputStocks
         ::getpath(stockid)      #return path of the stock
             fileparsers.InputStocksDir
 
+utils.HoldedStock
+        ::getlist()             #list of record name, the last one is the latest
+        ::getrecordpath(index)  #-1 is the latest one
+
+OneHoldedRecord:
+        ::init(recordpath)
+        ::date()
+        ::time()
+        ::stocks()      #{"idx":(total, buy), ...}       
+        :;getstock(id)  #return (total, buy)
+            fileparsers.HoldedStocksFile
+
+
 ################################################################ File Parsers ##############################################################
 fileparsers.BaseParser
         ::init(filepath)
@@ -69,6 +85,8 @@ fileparsers.StockIdNameMapFile(BaseParser)
 fileparsers.InputStocksDir
         ::allstocks()           #a dict, key is the stockid, content is the pinyin
 
+fileparsers.HoldedStocksFile
+
 ################################################################ Helper ##############################################################
 stock.Common
     ::stockidsimple(stockid)
@@ -78,59 +96,12 @@ stock.Common
 Config
     ::PATH
 ##############################################################################################################################
------------------------------------------------------------------------------
-
-         ::stockname(idx)
-         utils.StockIdName 
-         fileparsers.StockIdNameMapFile
-        
-
-package moneysea
-    Global
-
-    package stock
-        |---Verbose
-        |---StocksList
-        |---ManualAdding
-             |---Parser     #具体某只股票的解析
-             |---Addings    #各种增长率类
-             |---FinancialSet #财务信息集合
-
-    package test
-        |---Test
-        |---
-
-    package news
-        |---News
-
-    package fitting
-        |---Fitting
-
-    package holded 
-        |---Holded
-
-    package utils
-        |--- PriceList
-        |--- StockIdName
-        |--- Types
-
-    package predict
-        |---Predict
-
-
----------------------------------------------------------
-fileparsers ---|---BaseParser
-                   |--- Financial
-                     |--- FcData
-                   |--- HoldedStocks / Note 
-                   |--- StockIdNameMap
 
 
 
 
-############################################################## Details #################################################################
-4. fileparsers
-4.1 BaseParser
+
+
 4.2 Financial / FcData
 FcData #每一季数据
         .complete              #数据信息是否完整，如果存在"--"或者明显的错误，则complete = False
@@ -164,44 +135,11 @@ Financial #财务数据financial分析
         - nextreport()
         - previousreport()
 
-4.2 HoldedStocks / OneHoldedRecord / OneHoldedStock
-OneHoldedStock:
-        . 
-        .
-        .
-OneHoldedRecord:
-        . date
-        . time
-        . index
-        . list    #list of OneHoldedStock
-        . getstock(id)  #id is string
-
-HoldedStocks
-持股记录
-    - input: path
-    - getlist()         #获得所有的记录
-    - getlatest()       #获得最新的记录
-    - getprevious()     #获得前一个记录
-    - getnext()         #获得下一个记录
-
-5. stock
-5.1 support 类
-5.1.1 FinancialSet
 财务信息集合
     - input: list of stock id
     - getidlist()
     - getlist()
     - getfinancial(id)  #id is string
-
-
-6. utils
-6.1 Types
-股票分类
-    一个股票可能从属于多个type
-    - input                     #classfy.xml
-    - getalltypes()
-    - getstockidlist(stype)
-
 
 
 
