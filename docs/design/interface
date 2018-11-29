@@ -32,9 +32,17 @@ list [--verbose] [<types>]
         <--verbose>
             show verbose information in list
 
-type 
+type [list | dump | show] [<args>]
     DESCRIPTION:
         show all stock types
+
+    COMMAND:
+        list
+            list all types
+        dump type
+            dump all stock of specific type
+        show stockid
+            show type of the specific stock 
 
 adding [pinyin | ID]
     DESCRIPTION:

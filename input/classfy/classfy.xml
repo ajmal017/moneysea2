@@ -1,0 +1,4 @@
+<xml>
+    <type name="all" filetype="all"/>
+    <type name="bank" filetype="industry" filepath="input/classfy/bank" np=""/>
+</xml>

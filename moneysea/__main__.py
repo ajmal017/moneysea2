@@ -1,7 +1,8 @@
 # coding=utf-8
 import sys
 import getopt
-from actions.baseaction import BaseAction
+from moneysea.actions.baseaction import BaseAction
+from moneysea.actions.typeaction import TypeAction
 
 class HelpAction(BaseAction):
     def cmd(self):
@@ -42,7 +43,7 @@ class MoneySea:
     def __init__(self):
         ########################################### add new actions here ########################################################
         self._version = "moneysea 0.4"
-        self._actions = [BaseAction, HelpAction]
+        self._actions = [TypeAction, HelpAction]
         self._options = ["verbose", "version"]
         pass
 

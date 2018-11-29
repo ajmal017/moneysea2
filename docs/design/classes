@@ -1,33 +1,48 @@
 ################################################################ Overview ##############################################################
-moneysea.MoneySea (__main__.py)      # Main entry, call corresponding action and pass the arguments and options; construct help message
+MoneySea        # Main entry, call corresponding action and pass the arguments and options; construct help message
+    ::run()
+
+MoneySea (__main__.py)      
+    ::run()
+        ParseAction, ListAction, TypeAction, ...
+
+actions.BaseAction
+        ::cmd()
+        ::summary()
+        ::description()
+        ::run()
+
+actions.TypeAction(BaseAction)
          ::run()
-             actions.BaseAction > ParseAction, ListAction, TypeAction, ...
-                        ::cmd()
-                        ::summary()
-                        ::description()
-                        ::run()
+            utils.Types
+
+utils.Types
+        ::listtypes()
+        ::liststocks(stype)
+        ::stocktypes(stock)
+        ::typeproperty(stype)
+            fileparsers.ClassfyXml
+            fileparsers.ClassfyIndustry
+
+fileparsers.BaseParser
+        ::init(filepath)
+        ::doparse()
+        ::verify()
+
+fileparsers.ClassfyXml(BaseParser)
+        ::alltypes()
+
+fileparsers.ClassfyIndustry(BaseParser)
+        ::allstocks()
 
 
-moneysea.actions.TypeAction(BaseAction)
-         ::run()
-            Globals.types() #Types class
-                    ::list()            #return list of all types
-                    ::content(stype)    #return list of stocks of one type
-                    ::gettypes(stockid) #return list of types of one stock
-
-
-moneysea.utils.Types
-         fileparsers.ClassfyXml
-         fileparsers.ClassfyIndustry
-
-
+----------------------------------------------------------
 moneysea.Globals
          ::stockname(idx)
          utils.StockIdName 
          fileparsers.StockIdNameMapFile
         
 
-----------------------------------------------------------
 package moneysea
     Global
 
