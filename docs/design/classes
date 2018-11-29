@@ -1,4 +1,10 @@
 ################################################################ Overview ##############################################################
+MoneySea ===> Actions <=== Globals <=== Inputs
+                |
+                V
+            Parsing ...
+
+################################################################ Actions ##############################################################
 MoneySea        # Main entry, call corresponding action and pass the arguments and options; construct help message
     ::run()
 
@@ -12,10 +18,22 @@ actions.BaseAction
         ::description()
         ::run()
 
-actions.TypeAction(BaseAction)
+actions.TypeAction(BaseAction)                          ......  action 1
          ::run()
             utils.Types
 
+################################################################ Globals ##############################################################
+#SINGLE INSTANCE
+Globals  #single instance, handle results from various input parsing
+    ::getstockidnamemapping()   #return StockIdNameMapping
+    ::gettypes()                #return Types, handle to classfy files
+    ::getholded()               #return Holded, handle to holded files
+    ::getstocks()               #return Stocks, handle to all stocks
+    :;getprices()               #return Prices, handle to prices
+    ::getdefault()              #return Default, handle to default
+
+
+################################################################ INPUTS ##############################################################
 utils.Types
         ::listtypes()
         ::liststocks(stype)
@@ -24,6 +42,13 @@ utils.Types
             fileparsers.ClassfyXml
             fileparsers.ClassfyIndustry
 
+utils.StockIdNameMapping
+        ::getname(idx)
+            fileparsers.StockIdNameMapFile
+
+
+
+################################################################ File Parsers ##############################################################
 fileparsers.BaseParser
         ::init(filepath)
         ::doparse()
@@ -35,16 +60,20 @@ fileparsers.ClassfyXml(BaseParser)
 fileparsers.ClassfyIndustry(BaseParser)
         ::allstocks()
 
--------------------------------------------- helper -------------------------
+fileparsers.StockIdNameMapFile(BaseParser)
+        ::getmap()
+
+################################################################ Helper ##############################################################
 stock.Common
     ::stockidsimple(stockid)
     ::stockidlocation(stockid)
+    ::stockname(idx)
 
+Config
+    ::PATH
+##############################################################################################################################
+-----------------------------------------------------------------------------
 
-
-
-----------------------------------------------------------
-moneysea.Globals
          ::stockname(idx)
          utils.StockIdName 
          fileparsers.StockIdNameMapFile
@@ -90,7 +119,6 @@ fileparsers ---|---BaseParser
                    |--- HoldedStocks / Note 
                    |--- StockIdNameMap
 
-Config
 
 
 

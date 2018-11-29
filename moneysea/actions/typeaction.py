@@ -1,6 +1,7 @@
 
 from moneysea.actions.baseaction import BaseAction
 from moneysea.utils.types import Types
+from moneysea.globals import Globals
 
 class TypeAction(BaseAction):
     def __init__(self):
@@ -31,7 +32,7 @@ COMMAND:
 
 
     def run(self, args, opts):
-        types = Types()
+        types = Globals.get_instance().gettypes()
         if len(args) == 0:
             print types.listtypes()
             return
@@ -65,9 +66,9 @@ COMMAND:
                 stocks = prop["stocks"]
             except:
                 return
-
+            mapping = Globals.get_instance().getstockidnamemapping()
             for idx in stocks:
-                print idx
+                print idx, mapping.getname(idx)
 
         elif args[0] == "show":
             print "show type of stock", args[1]
