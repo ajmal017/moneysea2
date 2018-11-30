@@ -105,16 +105,16 @@ stock.Common
 
 Config
     ::PATH
-##############################################################################################################################
-
-
-
-
-
-
-4.2 Financial / FcData
-FcData #每一季数据
-        .complete              #数据信息是否完整，如果存在"--"或者明显的错误，则complete = False
+#################################################### STOCK ##########################################################################
+FinancialFile(BaseParser) #财务数据financial分析
+    ::init(filepath)
+    #allow user to access report using year and season
+    ::yearreport(year)
+    ::report(year, season)
+    ::latestreport()
+    ::oldestreport()
+    ::allreports()
+        #every report is a dict, keys: 
         .year
         .season
         .per_share_earnings
@@ -134,16 +134,7 @@ FcData #每一季数据
         .sales_gross            #销售毛利率
         .product_turnover       #存货周转率
 
-
-Financial #财务数据financial分析
-    - input: financial文件路径
-    - methods:
-        - get_year_report(year)
-        - getreport(year, season)
-        - latestreport()
-        - oldestreport()
-        - nextreport()
-        - previousreport()
+Financial #more complex, include 365profit, various adding
 
 财务信息集合
     - input: list of stock id
