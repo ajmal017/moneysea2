@@ -11,4 +11,13 @@ class Common:
             return None
 
     def stockidlocation(self, stockid):
+        if stockid[0] == "6":
+            return "sh" + stockid
+        else:
+            return "sz" + stockid
         return
+
+
+if __name__ == "__main__":
+    cm = Common()
+    print cm.stockidlocation("000096")

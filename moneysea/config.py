@@ -16,6 +16,8 @@ class Config:
     CLASSFY_PATH = "input/classfy"
     CLASSFY_XML = "input/classfy/classfy.xml"
 
+    PRICES_PATH = "input/prices"
+
     #output
     OUTPUT = "output/"
 

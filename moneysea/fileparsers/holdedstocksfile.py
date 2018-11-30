@@ -4,7 +4,7 @@
 # Verify: 总资产应该等于市值加余额; 其中每只股票的市值和等于总市值
 
 
-from baseparser import BaseParser
+from moneysea.fileparsers.baseparser import BaseParser
 
 class HoldedStocksFile(BaseParser):
     STOCKS_HOLDED = 0

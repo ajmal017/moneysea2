@@ -22,6 +22,9 @@ actions.TypeAction(BaseAction)                          ......  action 1
          ::run()
             utils.Types
 
+actions.PriceAction(BaseAction)
+            utils.Prices
+
 ################################################################ Globals ##############################################################
 #SINGLE INSTANCE
 Globals  #single instance, handle results from various input parsing
@@ -47,6 +50,7 @@ utils.Types
 
 utils.StockIdNameMapping
         ::getname(idx)
+        ::getmap()
             fileparsers.StockIdNameMapFile
 
 utils.InputStocks
@@ -66,6 +70,11 @@ utils.OneHoldedRecord:
         :;getstock(id)  #return (total, buy)
             fileparsers.HoldedStocksFile
 
+utils.Prices:
+        ::update()              #fetch prices from internet and save it in file
+        ::pathlist()            #list of path of all prices list
+        ::prices(filepath)      #return the dictionary generate from the filepath
+        ::latestprices()        #return the dictionary of latest prices
 
 ################################################################ File Parsers ##############################################################
 fileparsers.BaseParser

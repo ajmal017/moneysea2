@@ -3,6 +3,7 @@ from moneysea.utils.stockidnamemapping import StockIdNameMapping
 from moneysea.utils.inputstocks import InputStocks
 from moneysea.utils.holdedrecord import HoldedRecord
 from moneysea.utils.oneholdedrecord import OneHoldedRecord
+from moneysea.utils.prices import Prices
 
 class Globals:
     INSTANCE = None
@@ -15,6 +16,7 @@ class Globals:
         self._inputstocks = None
         self._allholdedrecords = None
         self._latestholdedrecord = None
+        self._prices = None
 
     @classmethod
     def get_instance(cls):
@@ -49,8 +51,13 @@ class Globals:
         return self._latestholdedrecord
 
 
+    def getprices(self):               #return Prices, handle to prices
+        if self._prices == None:
+            self._prices = Prices(self) 
+        return self._prices
+
+
 '''
-    :;getprices()               #return Prices, handle to prices
     ::getdefault()              #return Default, handle to default
 '''
 
