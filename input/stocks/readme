@@ -1,0 +1,8 @@
+chrome
+同花顺 =》 财务指标 =》按报告期
+类似下面
+http://stockpage.10jqka.com.cn/002288/finance/#finance
+
+选择表格，然后复制，在vim中粘贴
+
+./utils/newstock

@@ -31,8 +31,8 @@ Globals  #single instance, handle results from various input parsing
     ::getdefault()              #return Default, handle to default
     ::getinputstocks()          #return InputStocks
 
-    ::getallholdedstocks()      #return HoldedStocks
-    ::getlatestholdedstocks()   #return OneHoldedRecord
+    ::getallholdedrecords()      #return HoldedRecord
+    ::getlatestholdedrecord()   #return OneHoldedRecord
 
 
 ################################################################ INPUTS ##############################################################
@@ -54,11 +54,11 @@ utils.InputStocks
         ::getpath(stockid)      #return path of the stock
             fileparsers.InputStocksDir
 
-utils.HoldedStock
+utils.HoldedRecord
         ::getlist()             #list of record name, the last one is the latest
         ::getrecordpath(index)  #-1 is the latest one
 
-OneHoldedRecord:
+utils.OneHoldedRecord:
         ::init(recordpath)
         ::date()
         ::time()
@@ -86,6 +86,7 @@ fileparsers.InputStocksDir
         ::allstocks()           #a dict, key is the stockid, content is the pinyin
 
 fileparsers.HoldedStocksFile
+        ::stocks()
 
 ################################################################ Helper ##############################################################
 stock.Common

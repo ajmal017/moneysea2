@@ -1,6 +1,8 @@
 from moneysea.utils.types import Types
 from moneysea.utils.stockidnamemapping import StockIdNameMapping
 from moneysea.utils.inputstocks import InputStocks
+from moneysea.utils.holdedrecord import HoldedRecord
+from moneysea.utils.oneholdedrecord import OneHoldedRecord
 
 class Globals:
     INSTANCE = None
@@ -11,6 +13,8 @@ class Globals:
         self._types = None
         self._stockidnamemapping = None
         self._inputstocks = None
+        self._allholdedrecords = None
+        self._latestholdedrecord = None
 
     @classmethod
     def get_instance(cls):
@@ -33,6 +37,17 @@ class Globals:
             self._inputstocks = InputStocks()
         return self._inputstocks
 
+    def getallholdedrecords(self):      #return HoldedStocks
+        if self._allholdedrecords == None:
+            self._allholdedrecords = HoldedRecord()
+        return self._allholdedrecords
+
+    def getlatestholdedrecord(self):   #return OneHoldedRecord
+        if self._latestholdedrecord == None:
+            hr = self.getallholdedrecords()
+        self._latestholdedrecord = OneHoldedRecord(hr.getrecordpath(-1))
+        return self._latestholdedrecord
+
 
 '''
     :;getprices()               #return Prices, handle to prices
@@ -40,3 +55,9 @@ class Globals:
 '''
 
 
+if __name__ == "__main__":
+#    ahr = Globals.get_instance().getallholdedrecords()
+#    print ahr.getlist()
+#    print ahr.getrecordpath(-1)
+    lhr = Globals.get_instance().getlatestholdedrecord()
+    print lhr.stocks()

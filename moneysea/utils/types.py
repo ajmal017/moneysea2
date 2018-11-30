@@ -21,6 +21,8 @@ class Types:
                 self.setupindustrytype(content)
             elif filetype == "available":
                 self.setupavailabletype(content)
+            elif filetype == "holded":
+                self.setupholdedtype(content)
             else:
                 print "Warning: moneysea.utils.Types unknown filetype:", filetype
                 del alltypes[key]
@@ -39,6 +41,10 @@ class Types:
         input = self._gbls.getinputstocks()
         content["stocks"] = input.allstocks().keys()
 
+    def setupholdedtype(self, content):
+        lhr = self._gbls.getlatestholdedrecord()
+        content["stocks"] = lhr.stocks().keys()
+
 
     def listtypes(self):
         return self._cfx.alltypes().keys()
@@ -54,7 +60,8 @@ class Types:
             cnt = alltypes[typ]
             if cnt["filetype"] == "all":
                 continue
-            types.append(cnt["name"])
+            if stock in cnt["stocks"]:
+                types.append(cnt["name"])
             
         return types
 

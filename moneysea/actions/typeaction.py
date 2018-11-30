@@ -63,8 +63,33 @@ COMMAND:
             except:
                 return
             mapping = Globals.get_instance().getstockidnamemapping()
+            print "id, \tname, \t\tdata, holded, industry"
             for idx in stocks:
-                print idx, mapping.getname(idx)
+                ll = len(mapping.getname(idx))
+
+                print idx, mapping.getname(idx),
+                if ll < 12:
+                    print "\t",
+
+                tps = types.stocktypes(idx)
+                if "available" in tps:
+                    print "\tY",
+                else:
+                    print "\t-",
+
+                if "holded" in tps:
+                    print "\tH",
+                else:
+                    print "\t-",
+
+                for t in tps:
+                    if "available" == t:
+                        continue
+                    if "holded" == t:
+                        continue
+                    print "\t", t,
+
+                print ""
 
         elif args[0] == "show":
             if len(args) < 2:

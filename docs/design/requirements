@@ -66,7 +66,10 @@ http://quotes.money.163.com/service/chddata.html?code=1300118&end=20180430
 可以参考
 http://data.10jqka.com.cn/financial/yjyg/#refCountId=data_55f29cbf_519
 
-
+2. 验证
+比如某时刻，分析银行行业股票偏离，
+一段时间后，看每只股票的涨跌情况，是否和当初预计的偏离一致。
+这个要求，经常记录股票的价格
 
 
 
