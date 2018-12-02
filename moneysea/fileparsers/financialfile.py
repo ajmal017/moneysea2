@@ -38,9 +38,13 @@ class FinancialFile(BaseParser):
                     continue
                 datalist.append(items)
 
+        if len(datalist) < 10:
+            return
+
         i = 0
         self._oldest = 100000
         self._latest = -10000
+
         for date in datalist[0]:
             year, season = self.year_season(date)
             index = self.getindex(year, season)
