@@ -1,7 +1,10 @@
 <xml>
     <type name="all" cname="" filetype="all"/>
     <type name="available" cname="" filetype="available"/>
+    <type name="holded" cname="" filetype="holded"/>
     <type name="bank" cname="银行" filetype="industry" filepath="input/classfy/bank"/>
     <type name="zonghe" cname="综合" filetype="industry" filepath="input/classfy/zonghe"/>
-    <type name="holded" cname="" filetype="holded"/>
+    <type name="marketing" cname="传媒>营销传播" filetype="industry" filepath="input/classfy/marketing"/>
+    <type name="networking_marketing" cname="传媒>互联网传媒" filetype="industry" filepath="input/classfy/networking_marketing"/>
+    <type name="culture_media" cname="传媒>文化传媒" filetype="industry" filepath="input/classfy/culturemedia"/>
 </xml>
