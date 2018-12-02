@@ -170,7 +170,8 @@ class FinancialFile(BaseParser):
 
 
 if __name__ == "__main__":
-    ff = FinancialFile("input/stocks/ylgf-300230/finance")
+#    ff = FinancialFile("input/stocks/ylgf-300230/finance")
+    ff = FinancialFile("input/stocks/yxkj-300231/finance")
     ff.doparse()
 #    print ff.allreports()
 #    print ff.oldestreport()
