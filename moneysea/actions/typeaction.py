@@ -34,7 +34,7 @@ COMMAND:
         types = Globals.get_instance().gettypes()
 
         if len(args) == 0 or args[0] == "list":
-            print "%16s%16s%16s%16s"%("name","typetype","np","count")
+            print "%16s%16s%16s%16s%16s"%("name","cname","typetype","np","count")
             print ""
             for typ in types.listtypes():
                 prop = types.typeproperty(typ)
@@ -46,7 +46,7 @@ COMMAND:
                     count = len(prop["stocks"])
                 except:
                     count = 0
-                print "%16s%16s%16s%16s"%(typ, prop["filetype"], np, count)
+                print "%16s%16s%16s%16s%16s"%(typ, prop["cname"], prop["filetype"], np, count)
         elif args[0] == "dump":
             if len(args) < 2:
                 print "please specify the stock type for dumping"

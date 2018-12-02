@@ -7,7 +7,7 @@ class ClassfyIndustry(BaseParser):
         with open(self._filepath) as f:
             for line in f:
                 items = line.split()
-                if len(items) != 15:
+                if len(items) < 12:
                     continue
                 idx = Common().stockidsimple(items[0])
                 if idx != None:

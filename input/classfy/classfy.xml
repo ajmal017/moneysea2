@@ -1,6 +1,7 @@
 <xml>
-    <type name="all" filetype="all"/>
-    <type name="available" filetype="available"/>
-    <type name="bank" filetype="industry" filepath="input/classfy/bank"/>
-    <type name="holded" filetype="holded"/>
+    <type name="all" cname="" filetype="all"/>
+    <type name="available" cname="" filetype="available"/>
+    <type name="bank" cname="银行" filetype="industry" filepath="input/classfy/bank"/>
+    <type name="zonghe" cname="综合" filetype="industry" filepath="input/classfy/zonghe"/>
+    <type name="holded" cname="" filetype="holded"/>
 </xml>
