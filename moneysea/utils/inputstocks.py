@@ -12,3 +12,8 @@ class InputStocks:
 
     def getpath(stockid):               #return path of the stock
         pass
+
+    def getpinyin(self, stockid):
+        return self._dir.allstocks()[stockid]
+
+    
