@@ -21,5 +21,8 @@ class Config:
     #output
     OUTPUT = "output/"
 
+    #minimal profit request
+    MINIMAL_PROFIT = 1000000
+
     def __init__(self):
         pass

@@ -10,8 +10,8 @@ class InputStocks:
     def allstocks(self):                #a dict, key is the stockid, content is the pinyin
         return self._dir.allstocks()
 
-    def getpath(stockid):               #return path of the stock
-        pass
+    def getpath(self, stockid):               #return path of the stock
+        return Config.STOCKS_PATH + "/" + self._dir.allstocks()[stockid] + "-" + stockid
 
     def getpinyin(self, stockid):
         return self._dir.allstocks()[stockid]

@@ -2,7 +2,7 @@
 MoneySea ===> Actions <=== Globals <=== Inputs
                 |
                 V
-            Parsing ...
+            Parsing ... <== Finance
 
 ################################################################ Actions ##############################################################
 MoneySea        # Main entry, call corresponding action and pass the arguments and options; construct help message
@@ -135,12 +135,10 @@ FinancialFile(BaseParser) #财务数据financial分析
         .product_turnover       #存货周转率
 
 Financial #more complex, include 365profit, various adding
+    :: init(stockid, (year, season)) #(year, season) is the baseline for adding caculate
+    :: addings()  #a dict
+    :: valid()
 
-财务信息集合
-    - input: list of stock id
-    - getidlist()
-    - getlist()
-    - getfinancial(id)  #id is string
 
 
 
