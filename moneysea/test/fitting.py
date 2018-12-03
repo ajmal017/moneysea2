@@ -27,14 +27,21 @@ class Fitting:
         print "valids count: ", len(valids)
         ax = []
         ay = []
+        ay2 = []
         
         for v in valids:
-            ax.append(v[4]["report"])
+            adding = v[4]["history"]
+            ax.append(adding)
             ay.append(v[3]/v[2])
+            eq = (((self._p+1)/(adding+1))**self._n) * self._p
+            ay2.append(eq)
+            q = v[2] / eq
+            print v[1], v[3], v[2], ">", q, " [", adding, (q - v[2])/v[2], eq, "]"
 
         print ax
         print ay
 
         plt.scatter(ax, ay, color='blue')
+        plt.scatter(ax, ay2, color='red')
         plt.show()
         pass
