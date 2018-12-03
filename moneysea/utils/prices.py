@@ -13,6 +13,7 @@ import json
 class Prices:
     def __init__(self, gbls):
         self._gbls = gbls
+        self._latestprices = self.latestprices()
         pass
 
     def update(self):
@@ -71,6 +72,9 @@ class Prices:
 
     def latestprices(self):        #return the dictionary of latest prices
         return self.prices(Config.PRICES_PATH + "/" + self.pathlist()[-1])
+
+    def price(self, sid):
+        return self._latestprices[sid]
 
 
 if __name__ == "__main__":

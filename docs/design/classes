@@ -75,6 +75,7 @@ utils.Prices:
         ::pathlist()            #list of path of all prices list
         ::prices(filepath)      #return the dictionary generate from the filepath
         ::latestprices()        #return the dictionary of latest prices
+        ::price(sid)            #return price of specific stock in latest price list
 
 ################################################################ File Parsers ##############################################################
 fileparsers.BaseParser

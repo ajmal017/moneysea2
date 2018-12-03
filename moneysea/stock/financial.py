@@ -1,4 +1,4 @@
-
+# coding=utf-8
 from moneysea.globals import Globals
 from moneysea.config import Config
 from moneysea.fileparsers.financialfile import FinancialFile
@@ -55,7 +55,18 @@ class Financial:
         if not self.setupaddings():
             print self.error("setup addings failed")
             return
+
+        self._pershareearning = self._pershareearning()
+
         self._valid = True
+
+    def _pershareearning(self):
+        #最新季报净利润/每股收益 = 总股数
+        totalstocks = self._baseline["profit"] / self._baseline["per_share_earnings"]
+        #每股收益 = 最近365天净利润 / 总股数
+        e = self.get365profit(self._baseline) / totalstocks
+        return e
+
 
     def error(self, err):
         print Globals.get_instance().getstockidnamemapping().getname(self._sid), self._sid, ":", err
@@ -85,7 +96,7 @@ class Financial:
             for s in range(0, 4):
                 r = self._ff.report(i, s)
                 if r == None:
-                    self.error("invalid financial report in %d:%d", i, s)
+                    self.error("invalid financial report in %d:%d"%(i, s))
                     return False
         return True
 
@@ -172,8 +183,12 @@ class Financial:
     def valid(self):
         return self._valid
 
+    def pershareearning(self):
+        return self._pershareearning
+
 
 if __name__ == "__main__":
-    fin = Financial("300230", (2016, 3))
+    fin = Financial("300230")
     if fin.valid():
         print fin.addings()
+        print fin.pershareearning()

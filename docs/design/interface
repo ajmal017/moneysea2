@@ -55,14 +55,15 @@ adding [pinyin | ID]
 news
     todo
 
-fitting <types> [n=x p=x]
+fitting <type> [n=x p=x]
     DESCRIPTION:
-        draw fitting graph for the specific types
+        draw fitting graph for the specific type
 
     OPTIONS:
-        <types>
-            type list
+        <type>
+            stock type
         [n=x p=x]
+            n and p value, default n=5, p=0.08
 
 
 holded  [old] [new]
