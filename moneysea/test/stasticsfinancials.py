@@ -2,6 +2,7 @@
 from moneysea.globals import Globals
 from moneysea.actions.baseaction import BaseAction
 from moneysea.stock.stock import Stock
+from moneysea.addings.season3adding import Season3Adding
 
 class StasticsFinancials(BaseAction):
     def cmd(self):
@@ -12,6 +13,7 @@ class StasticsFinancials(BaseAction):
                             valid: statistics valid financials data
                             continuous: continuous adding 
                             adding: adding range of all stocks
+                            delta: statistics of delta value
                 ''' 
 
     def description(self):
@@ -29,6 +31,34 @@ class StasticsFinancials(BaseAction):
             self.stat_conti()
         elif args[0] == "adding":
             self.stat_adding()
+        elif args[0] == "delta":
+            self.stat_delta()
+
+    def stat_delta(self):
+        all = {}
+        for s in self._iss.allstocks():
+            stock = Stock(s)
+            all[s] = stock
+
+        for s in all:
+            ss = all[s]
+            if not ss.ffvalid():
+                continue
+
+            ac = Season3Adding(ss)
+            if ac.filterout():
+                continue
+
+            ss.set_adding(ac.adding())
+
+            try:
+                dratio = ss.dratio()
+            except:
+                continue
+            if dratio < 0:
+                print s, ss.name(), ss.a(), dratio
+
+
 
 
     def stat_adding(self):
