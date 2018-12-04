@@ -68,6 +68,7 @@ class FinancialFile(BaseParser):
             raise ValueError(self._filepath + " parsing verifying failed")
 
     def verify(self):
+        '''
         for index in self._data:
             fd = self._data[index]
             if fd == None:
@@ -76,6 +77,7 @@ class FinancialFile(BaseParser):
             tmp = abs(val - fd["asset_yield2"])
             if tmp > 1:
                 print "Warning: 净资产收益率 in ", fd["year"], "season ", fd["season"], ",", ": diff is " + str(tmp) + "%"
+        '''
         return True
 
     def constructdata(self, year, season, datalist, i):
@@ -88,12 +90,12 @@ class FinancialFile(BaseParser):
             fd["per_share_earnings"] = float(datalist[1][i].strip())
             fd["profit"] = self.parsemoney(datalist[2][i])
             fd["profit_adding"] = self.parseadding(datalist[3][i])
-            fd["profit2"] = self.parsemoney(datalist[4][i])        #扣非净利润
-            fd["profit2_adding"] = self.parseadding(datalist[5][i])
+#            fd["profit2"] = self.parsemoney(datalist[4][i])        #扣非净利润
+#            fd["profit2_adding"] = self.parseadding(datalist[5][i])
 
-            fd["per_share_asset"] = self.parsemoney(datalist[8][i])  #每股净资产
-            fd["asset_yield"] = self.parseadding(datalist[9][i])   #净资产收益率
-            fd["asset_yield2"] = self.parseadding(datalist[10][i])   #净资产收益率-摊薄
+#            fd["per_share_asset"] = self.parsemoney(datalist[8][i])  #每股净资产
+#            fd["asset_yield"] = self.parseadding(datalist[9][i])   #净资产收益率
+#            fd["asset_yield2"] = self.parseadding(datalist[10][i])   #净资产收益率-摊薄
 
         except:
             return None

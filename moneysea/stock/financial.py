@@ -86,18 +86,23 @@ class Financial:
         lseason = self._baseline["season"]
         
         # be sure 3 years financial data are valid
-        for i in range(0, lseason):
-            r = self._ff.report(lyear, i)
+        for s in range(0, lseason):
+            r = self._ff.report(lyear, s)
             if r == None:
-                self.error("invalid financial report in %d:%d"%(lyear, i))
+                self.error("invalid financial report in %d:%d"%(lyear, s))
                 return False
 
-        for i in range(lyear - 2, lyear):
-            for s in range(0, 4):
-                r = self._ff.report(i, s)
-                if r == None:
-                    self.error("invalid financial report in %d:%d"%(i, s))
-                    return False
+        for s in range(0, 4):
+            r = self._ff.report(lyear - 1, s)
+            if r == None:
+                self.error("invalid financial report in %d:%d"%(lyear - 1, s))
+                return False
+
+        for s in range(lseason, 4):
+            r = self._ff.report(lyear - 2, s)
+            if r == None:
+                self.error("invalid financial report in %d:%d"%(lyear - 2, s))
+                return False
         return True
 
 
@@ -126,7 +131,7 @@ class Financial:
 
         #verifying it
         if l2year["profit"] < Config.MINIMAL_PROFIT: #negative is discard
-            return (False, 0)
+            return self.negativeadding(l2year["profit"], l1year["profit"])
 
         val = (l1year["profit"] - l2year["profit"])/l2year["profit"]
         if abs(report - val) > 0.10:
@@ -142,10 +147,20 @@ class Financial:
         prev_profit = self.get365profit(prev_season)
 
         if prev_profit < Config.MINIMAL_PROFIT: #negative is discard
-            return (False, 0)
+            return self.negativeadding(prev_profit, latest_profit)
 
         val = (latest_profit - prev_profit)/prev_profit
         return True, val
+
+    def negativeadding(self, a1, a2):
+        if a2 < Config.MINIMAL_PROFIT:
+            self.error("Discard it as recent profit is too small or negative: " + str(a2))
+            return (False, 0)
+        tmp = abs(a1) + abs(a2)
+        v1 = tmp + a1
+        v2 = tmp + a2
+        vv = (v2 - v1)/v1
+        return (True, vv)
 
     def reportadding(self):
         bs = self._baseline
@@ -155,11 +170,11 @@ class Financial:
         bs_profit = bs["profit"]
         last = self._ff.report(bs["year"] - 1, bs["season"])
         last_profit = last["profit"]
-        val = (bs_profit - last_profit)/last_profit
 
         if last_profit < Config.MINIMAL_PROFIT: #negative is discard
-            return (False, 0)
+            return self.negativeadding(last_profit, bs_profit)
 
+        val = (bs_profit - last_profit)/last_profit
         if abs(val - report) > 0.10:
             self.error("caculate latest report adding, verifying failed ")
             return (False, 0)

@@ -25,6 +25,9 @@ actions.TypeAction(BaseAction)                          ......  action 1
 actions.PriceAction(BaseAction)
             utils.Prices
 
+actions.ParseAction(BaseAction)
+            stock.Stock
+
 ################################################################ Globals ##############################################################
 #SINGLE INSTANCE
 Globals  #single instance, handle results from various input parsing
@@ -140,7 +143,15 @@ Financial #more complex, include 365profit, various adding
     :: addings()  #a dict
     :: valid()
 
-
+Stock     #single stock
+    :: init(sid)
+    :: name()
+    :: e()
+    :: price()
+    :: Q()
+    :: q()
+    :: n()
+    :: p()
 
 
 

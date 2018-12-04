@@ -16,4 +16,12 @@ class InputStocks:
     def getpinyin(self, stockid):
         return self._dir.allstocks()[stockid]
 
+    def getids(self, pinyin):
+        all = self._dir.allstocks()
+        ids = []
+        for a in all:
+            if all[a] == pinyin:
+                ids.append(a)
+        return ids
+
     
