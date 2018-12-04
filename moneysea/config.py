@@ -24,5 +24,8 @@ class Config:
     #minimal profit request
     MINIMAL_PROFIT = 1000000
 
+    # should be moved to default.xml
+    N = 5
+    P = 0.08
     def __init__(self):
         pass

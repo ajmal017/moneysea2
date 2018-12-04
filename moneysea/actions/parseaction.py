@@ -40,11 +40,35 @@ OPTIONS:
         except:
             #it is pinyin
             ids = Globals.get_instance().getinputstocks().getids(args[0])
-            idx = self.select(ids)
+            if len(ids) == 1:
+                idx = ids[0]
+            elif len(ids) > 1:
+                idx = self.select(ids)
+            else:
+                print "Please specific a correct stock"
+                return
 
         stock = Stock(idx)
 
-        print idx, opts
+        print stock.id()
+        print stock.name()
+        print stock.types()
+        print "industry:", stock.industry()
+        print stock.n(), stock.p()
+
+        if not stock.ffvalid():
+            print "No valid financial data"
+            return
+
+        print stock.addings()
+        stock.set_adding(stock.addings()["report"])
+        print "select adding:", stock.a()
+        print "pershareearning:", stock.e()
+        print "price:", stock.price()
+        print "e/q:", stock.eq()
+        print "q(reasonable price):", stock.q()
+        print "dratio(price adding predict):", stock.dratio()
+
 
 
     def select(self, ids):

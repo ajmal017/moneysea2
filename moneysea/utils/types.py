@@ -65,6 +65,17 @@ class Types:
             
         return types
 
+    def industry(self, stock):
+        alltypes = self._cfx.alltypes()
+        for typ in alltypes:
+            cnt = alltypes[typ]
+            if cnt["filetype"] != "industry":
+                continue
+            if stock in cnt["stocks"]:
+                return cnt
+            
+        return None
+
     def typeproperty(self, stype):
         return self._cfx.alltypes()[stype]
 

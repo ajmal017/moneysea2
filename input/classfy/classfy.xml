@@ -6,7 +6,7 @@
     <type name="zonghe" cname="综合" filetype="industry" filepath="input/classfy/zonghe"/>
     <type name="marketing" cname="传媒>营销传播" filetype="industry" filepath="input/classfy/marketing"/>
     <type name="networking_marketing" cname="传媒>互联网传媒" filetype="industry" filepath="input/classfy/networking_marketing"/>
-    <type name="culture_media" cname="传媒>文化传媒" filetype="industry" filepath="input/classfy/culturemedia"/>
+    <type name="culture_media" cname="传媒>文化传媒" filetype="industry" filepath="input/classfy/culturemedia" n="5" p="0.08"/>
     <type name="car" cname="汽车>汽车整车" filetype="industry" filepath="input/classfy/car"/>
     <type name="tv" cname="家用电器>视听器材" filetype="industry" filepath="input/classfy/tv"/>
     <type name="welectric" cname="家用电器>白色家电" filetype="industry" filepath="input/classfy/white_electric"/>
