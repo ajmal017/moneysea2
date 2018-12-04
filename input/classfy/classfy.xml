@@ -12,4 +12,8 @@
     <type name="welectric" cname="家用电器>白色家电" filetype="industry" filepath="input/classfy/white_electric"/>
     <type name="aerospace" cname="国防>航天装备" filetype="industry" filepath="input/classfy/aerospace"/>
     <type name="weapons" cname="国防>武器" filetype="industry" filepath="input/classfy/weapons"/>
+    <type name="boat" cname="国防>船舶" filetype="industry" filepath="input/classfy/boat"/>
+    <type name="plane" cname="国防>航空装备" filetype="industry" filepath="input/classfy/plane"/>
+    <type name="machinery" cname="电气>电机" filetype="industry" filepath="input/classfy/machinery"/>
+    <type name="power" cname="电气>电源" filetype="industry" filepath="input/classfy/power"/>
 </xml>
