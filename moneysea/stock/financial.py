@@ -56,6 +56,8 @@ class Financial:
             print self.error("setup addings failed")
             return
 
+        if self._baseline["per_share_earnings"] == 0:
+            return
         self._pershareearning = self._pershareearning()
 
         self._valid = True
