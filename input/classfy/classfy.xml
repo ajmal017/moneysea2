@@ -16,4 +16,6 @@
     <type name="plane" cname="国防>航空装备" filetype="industry" filepath="input/classfy/plane"/>
     <type name="machinery" cname="电气>电机" filetype="industry" filepath="input/classfy/machinery"/>
     <type name="power" cname="电气>电源" filetype="industry" filepath="input/classfy/power"/>
+    <type name="auto" cname="电气>自动化" filetype="industry" filepath="input/classfy/auto"/>
+    <type name="highlowdevice" cname="电气>高低压设备" filetype="industry" filepath="input/classfy/highlowdevice"/>
 </xml>
