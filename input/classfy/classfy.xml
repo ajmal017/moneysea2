@@ -8,4 +8,8 @@
     <type name="networking_marketing" cname="传媒>互联网传媒" filetype="industry" filepath="input/classfy/networking_marketing"/>
     <type name="culture_media" cname="传媒>文化传媒" filetype="industry" filepath="input/classfy/culturemedia"/>
     <type name="car" cname="汽车>汽车整车" filetype="industry" filepath="input/classfy/car"/>
+    <type name="tv" cname="家用电器>视听器材" filetype="industry" filepath="input/classfy/tv"/>
+    <type name="welectric" cname="家用电器>白色家电" filetype="industry" filepath="input/classfy/white_electric"/>
+    <type name="aerospace" cname="国防>航天装备" filetype="industry" filepath="input/classfy/aerospace"/>
+    <type name="weapons" cname="国防>武器" filetype="industry" filepath="input/classfy/weapons"/>
 </xml>
