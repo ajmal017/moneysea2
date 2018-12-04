@@ -2,6 +2,7 @@
 from moneysea.actions.baseaction import BaseAction
 from moneysea.globals import Globals
 from moneysea.stock.stock import Stock
+from moneysea.addings.season3adding import Season3Adding
 
 class ParseAction(BaseAction):
     def __init__(self):
@@ -61,8 +62,15 @@ OPTIONS:
             return
 
         print stock.addings()
-        stock.set_adding(stock.addings()["report"])
+
+        ac = Season3Adding(stock)
+        if ac.filterout():
+            print "this stock is filter out"
+            return
+
+        stock.set_adding(ac.adding())
         print "select adding:", stock.a()
+
         print "pershareearning:", stock.e()
         print "price:", stock.price()
         print "e/q:", stock.eq()
