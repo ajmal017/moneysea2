@@ -19,4 +19,10 @@
     <type name="auto" cname="电气>自动化" filetype="industry" filepath="input/classfy/auto"/>
     <type name="highlowdevice" cname="电气>高低压设备" filetype="industry" filepath="input/classfy/highlowdevice"/>
     <type name="build" cname="建材>其他" filetype="industry" filepath="input/classfy/build"/>
+    <type name="concrete" cname="建材>水泥" filetype="industry" filepath="input/classfy/concrete"/>
+    <type name="glass" cname="建材>玻璃" filetype="industry" filepath="input/classfy/glass"/>
+    <type name="property" cname="商业贸易>商业物业" filetype="industry" filepath="input/classfy/property"/>
+    <type name="retail" cname="商业贸易>零售" filetype="industry" filepath="input/classfy/retail"/>
+    <type name="trading" cname="商业贸易>贸易" filetype="industry" filepath="input/classfy/trading"/>
+
 </xml>
