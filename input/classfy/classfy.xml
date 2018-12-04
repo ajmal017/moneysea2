@@ -18,4 +18,5 @@
     <type name="power" cname="电气>电源" filetype="industry" filepath="input/classfy/power"/>
     <type name="auto" cname="电气>自动化" filetype="industry" filepath="input/classfy/auto"/>
     <type name="highlowdevice" cname="电气>高低压设备" filetype="industry" filepath="input/classfy/highlowdevice"/>
+    <type name="build" cname="建材>其他" filetype="industry" filepath="input/classfy/build"/>
 </xml>
