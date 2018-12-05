@@ -51,7 +51,14 @@ class AddingFilter:
 
             self._pershareearning = self._pershareearning()
         except:
-            self._valid = (False, "FF")
+            self._valid = (False, "FF")     
+            # in case
+            # financial file is not exist
+            # latest financial data is out of date
+            # no financial data for baseline season
+            # baseline season: per_share_earnings is None or zero; or profit is None
+            # previous season: profit is None
+            # previous year: profit on season 4 is None
             return
         self._data = self._ff.allreports()
 
@@ -86,10 +93,9 @@ class AddingFilter:
 
         val = (l1year["profit"] - l2year["profit"])/l2year["profit"]
         if abs(report - val) > 0.10:
-            self.error("caculate history adding, verifying failed ")
-            return (False, 0)
+            return (False, 0, "Report Adding Verify")
 
-        return True, report
+        return (True, report, "OK")
 
     def _365adding(self):
         latest_profit = self.get365profit(self._baseline)
@@ -105,13 +111,12 @@ class AddingFilter:
 
     def negativeadding(self, a1, a2):
         if a2 < Config.MINIMAL_PROFIT:
-            self.error("Discard it as recent profit is too small or negative: " + str(a2))
-            return (False, 0)
+            return (False, 0, "Negative Adding")
         tmp = abs(a1) + abs(a2)
         v1 = tmp + a1
         v2 = tmp + a2
         vv = (v2 - v1)/v1
-        return (True, vv)
+        return (True, vv, "OK")
 
     def reportadding(self):
         bs = self._baseline
@@ -127,9 +132,8 @@ class AddingFilter:
 
         val = (bs_profit - last_profit)/last_profit
         if abs(val - report) > 0.10:
-            self.error("caculate latest report adding, verifying failed ")
-            return (False, 0)
-        return (True, report)
+            return (False, 0, "Report Adding Verify")
+        return (True, report, "OK")
 
     # for public access
     def ffvalid(self):
@@ -146,6 +150,29 @@ class AddingFilter:
 
     def addings(self):
         return self._addings
+
+    @classmethod
+    def statinfo(cls, key):
+        if key == "PRICE":
+            return "Price is zero"
+        elif key == "FF":
+            return '''
+        Financial data invalid, in case:
+            Financial file is not exist
+            Latest financial data is out of date
+            No financial data for baseline season
+            Baseline season: per_share_earnings is None or zero; or profit is None
+            Previous season: profit is None
+            Previous year: profit on season 4 is None
+            '''
+    @classmethod
+    def stat(cls, stats):
+        print ""
+        print "Statistics Info"
+        for s in stats:
+            print " ", s,"(",stats[s],")"
+            print "\t", cls.statinfo(s)
+        print ""
 
     # for inherent and public access
     def a(self):

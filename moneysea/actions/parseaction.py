@@ -3,6 +3,7 @@ from moneysea.actions.baseaction import BaseAction
 from moneysea.globals import Globals
 from moneysea.stock.stock import Stock
 from moneysea.addings.addingfilter import AddingFilter
+from moneysea.addings.defaultadding import DefaultAdding
 
 class ParseAction(BaseAction):
     def __init__(self):
@@ -49,7 +50,7 @@ OPTIONS:
                 print "Please specific a correct stock"
                 return
 
-        stock = Stock(idx, AddingFilter(idx))
+        stock = Stock(idx, DefaultAdding(idx))
 
         print stock.id()
         print stock.name()
