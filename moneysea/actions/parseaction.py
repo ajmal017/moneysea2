@@ -2,7 +2,7 @@
 from moneysea.actions.baseaction import BaseAction
 from moneysea.globals import Globals
 from moneysea.stock.stock import Stock
-from moneysea.addings.season3adding import Season3Adding
+from moneysea.addings.addingfilter import AddingFilter
 
 class ParseAction(BaseAction):
     def __init__(self):
@@ -49,7 +49,7 @@ OPTIONS:
                 print "Please specific a correct stock"
                 return
 
-        stock = Stock(idx)
+        stock = Stock(idx, AddingFilter(idx))
 
         print stock.id()
         print stock.name()
@@ -57,20 +57,13 @@ OPTIONS:
         print "industry:", stock.industry()
         print stock.n(), stock.p()
 
-        if not stock.ffvalid():
+        if not stock.ffvalid()[0]:
             print "No valid financial data"
             return
 
-        print stock.addings()
+        print "addings: ", stock.addings()
 
-        ac = Season3Adding(stock)
-        if ac.filterout():
-            print "this stock is filter out"
-            return
-
-        stock.set_adding(ac.adding())
         print "select adding:", stock.a()
-
         print "pershareearning:", stock.e()
         print "price:", stock.price()
         print "e/q:", stock.eq()

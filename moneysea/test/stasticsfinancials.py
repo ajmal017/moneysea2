@@ -2,7 +2,7 @@
 from moneysea.globals import Globals
 from moneysea.actions.baseaction import BaseAction
 from moneysea.stock.stock import Stock
-from moneysea.addings.season3adding import Season3Adding
+from moneysea.addings.addingfilter import AddingFilter
 
 class StasticsFinancials(BaseAction):
     def cmd(self):
@@ -37,26 +37,17 @@ class StasticsFinancials(BaseAction):
     def stat_delta(self):
         all = {}
         for s in self._iss.allstocks():
-            stock = Stock(s)
+            af = AddingFilter(s)
+            stock = Stock(s, af)
             all[s] = stock
 
         for s in all:
             ss = all[s]
-            if not ss.ffvalid():
+            if not ss.ffvalid()[0]:
                 continue
 
-            ac = Season3Adding(ss)
-            if ac.filterout():
-                continue
-
-            ss.set_adding(ac.adding())
-
-            try:
-                dratio = ss.dratio()
-            except:
-                continue
-            if dratio < 0:
-                print s, ss.name(), ss.a(), dratio
+            dratio = ss.dratio()
+            print s, ss.name(), ss.a(), dratio
 
 
 
@@ -64,12 +55,13 @@ class StasticsFinancials(BaseAction):
     def stat_adding(self):
         all = {}
         for s in self._iss.allstocks():
-            stock = Stock(s)
+            af = AddingFilter(s)
+            stock = Stock(s, af)
             all[s] = stock
 
         for s in all:
             ss = all[s]
-            if not ss.ffvalid():
+            if not ss.ffvalid()[0]:
                 continue
             print s, ss.name(), ss.addings()["report"]
 
@@ -77,14 +69,15 @@ class StasticsFinancials(BaseAction):
     def stat_conti(self):
         all = {}
         for s in self._iss.allstocks():
-            stock = Stock(s)
+            af = AddingFilter(s)
+            stock = Stock(s, af)
             all[s] = stock
 
         count = 0
         continuous = 0
         for s in all:
             ss = all[s]
-            if not ss.ffvalid():
+            if not ss.ffvalid()[0]:
                 continue
             print s, ss.name(), ss.addings()
             v = ss.addings()
@@ -97,7 +90,8 @@ class StasticsFinancials(BaseAction):
     def stat_valid(self):
         all = {}
         for s in self._iss.allstocks():
-            stock = Stock(s)
+            af = AddingFilter(s)
+            stock = Stock(s, af)
             all[s] = stock
 
         count = 0
@@ -105,7 +99,7 @@ class StasticsFinancials(BaseAction):
         for s in all:
             ss = all[s]
             print s, ss.name(), ss.ffvalid()
-            if ss.ffvalid():
+            if ss.ffvalid()[0]:
                 valid += 1
             count += 1
 

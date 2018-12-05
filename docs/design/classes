@@ -136,14 +136,14 @@ FinancialFile(BaseParser) #财务数据financial分析
         .sales_gross            #销售毛利率
         .product_turnover       #存货周转率
 
-FilterAdding
-    :: init(FinancialFile, (year, season)) #(year, season) is the baseline for adding caculate
-    :: valid()
-    :: addings()
+FilterAdding # Provide Filter and Adding algorithm
+    :: init__(self, stockid, (year, season) = (None, None), n = None, p = None): #(year, season) is the baseline for adding caculate
+    :: ffvalid()
     :: a()
     :: n()
     :: p()
     :: e()
+    :: addings()
 
 Stock     #single stock
     :: init(stockid, FilterAdding):
@@ -153,12 +153,15 @@ Stock     #single stock
     :: industry()
     :: price()
     
-    :: valid()
+    # from FilterAdding ...
+    :: ffvalid()
     :: addings()
     :: a()
     :: n()
     :: p()
     :: e()
+    
+    # from algorithm
     :: eq()
     :: q()
     :: dratio()
