@@ -24,5 +24,12 @@
     <type name="property" cname="商业贸易>商业物业" filetype="industry" filepath="input/classfy/property"/>
     <type name="retail" cname="商业贸易>零售" filetype="industry" filepath="input/classfy/retail"/>
     <type name="trading" cname="商业贸易>贸易" filetype="industry" filepath="input/classfy/trading"/>
+    <type name="train" cname="交通运输>铁路" filetype="industry" filepath="input/classfy/train"/>
+    <type name="bus" cname="交通运输>公交" filetype="industry" filepath="input/classfy/bus"/>
+    <type name="highway" cname="交通运输>高速" filetype="industry" filepath="input/classfy/highway"/>
+    <type name="airport" cname="交通运输>机场" filetype="industry" filepath="input/classfy/airport"/>
+    <type name="seaport" cname="交通运输>港口" filetype="industry" filepath="input/classfy/seaport"/>
+    <type name="shipping" cname="交通运输>船运" filetype="industry" filepath="input/classfy/shipping"/>
+    <type name="airline" cname="交通运输>航空" filetype="industry" filepath="input/classfy/airline"/>
 
 </xml>

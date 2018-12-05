@@ -86,10 +86,10 @@ class StasticsFinancials(BaseAction):
             ss = self._all[s]
             if not ss.ffvalid()[0]:
                 continue
-            print s, ss.name(), ss.addings()
             v = ss.addings()
             mini = -0.05
             if (v["report"] > mini) and (v["history"] > mini) and (v["365"] > mini):
+                print s, ss.name(), ss.addings()
                 continuous += 1
 
         print "continuous: ", continuous, "total: ", self._total, "percent: ", 100.0*continuous / self._total, "%"
