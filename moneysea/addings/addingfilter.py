@@ -87,13 +87,9 @@ class AddingFilter:
         l2year = self._ff.yearreport(year - 2)
         report = l1year["profit_adding"] / 100
 
-        #verifying it
-        if l2year["profit"] < Config.MINIMAL_PROFIT: #negative is discard
-            return self.negativeadding(l2year["profit"], l1year["profit"])
-
         val = (l1year["profit"] - l2year["profit"])/l2year["profit"]
         if abs(report - val) > 0.10:
-            return (False, 0, "Report Adding Verify")
+            return (False, 0, "History Adding Verify")
 
         return (True, report, "OK")
 
@@ -104,19 +100,10 @@ class AddingFilter:
         prev_profit = self.get365profit(prev_season)
 
         if prev_profit < Config.MINIMAL_PROFIT: #negative is discard
-            return self.negativeadding(prev_profit, latest_profit)
+            return (False, 0, "365 PROFIT SMALL")
 
         val = (latest_profit - prev_profit)/prev_profit
         return True, val
-
-    def negativeadding(self, a1, a2):
-        if a2 < Config.MINIMAL_PROFIT:
-            return (False, 0, "Negative Adding")
-        tmp = abs(a1) + abs(a2)
-        v1 = tmp + a1
-        v2 = tmp + a2
-        vv = (v2 - v1)/v1
-        return (True, vv, "OK")
 
     def reportadding(self):
         bs = self._baseline
@@ -126,9 +113,6 @@ class AddingFilter:
         bs_profit = bs["profit"]
         last = self._ff.report(bs["year"] - 1, bs["season"])
         last_profit = last["profit"]
-
-        if last_profit < Config.MINIMAL_PROFIT: #negative is discard
-            return self.negativeadding(last_profit, bs_profit)
 
         val = (bs_profit - last_profit)/last_profit
         if abs(val - report) > 0.10:
