@@ -38,9 +38,6 @@ class FinancialFile(BaseParser):
                     continue
                 datalist.append(items)
 
-        if len(datalist) < 10:
-            return
-
         i = 0
         self._oldest = 100000
         self._latest = -10000
@@ -80,36 +77,27 @@ class FinancialFile(BaseParser):
         '''
         return True
 
+    TABLE = ("per_share_earnings", "profit", "profit_adding", "profit2", "profit2_adding",
+            "sales", "sales_adding", "per_share_asset", "asset_yield", "asset_yield2", 
+            "asset_debt_ratio", "per_share_fund", "per_share_keep_profit", "per_share_cash",
+            "sales_gross")
     def constructdata(self, year, season, datalist, i):
         fd = {}
         fd["year"] = year
         fd["season"] = season
 
-        #below fields are must, else return None, it will cause this and following finance data be discard
-        try:
-            fd["per_share_earnings"] = float(datalist[1][i].strip())
-            fd["profit"] = self.parsemoney(datalist[2][i])
-            fd["profit_adding"] = self.parseadding(datalist[3][i])
-#            fd["profit2"] = self.parsemoney(datalist[4][i])        #扣非净利润
-#            fd["profit2_adding"] = self.parseadding(datalist[5][i])
+        index = 1
+        for key in self.TABLE:
+            try:
+                cnt = datalist[index][i]
+                if "%" in cnt:
+                    fd[key] = self.parseadding(cnt)
+                else:
+                    fd[key] = self.parsemoney(cnt)
+            except:
+                fd[key] = None
+            index += 1
 
-#            fd["per_share_asset"] = self.parsemoney(datalist[8][i])  #每股净资产
-#            fd["asset_yield"] = self.parseadding(datalist[9][i])   #净资产收益率
-#            fd["asset_yield2"] = self.parseadding(datalist[10][i])   #净资产收益率-摊薄
-
-        except:
-            return None
-
-        '''
-        .sales
-        .sales_adding
-        .asset_debt_ratio       #资产负债比率
-        .per_share_fund         #每股资本公积金
-        .per_share_keep_profit  #每股未分配利润
-        .per_share_cash         #每股经营现金流
-        .sales_gross            #销售毛利率
-        .product_turnover       #存货周转率
-        '''
         return fd
 
     def year_season(self, date):
@@ -179,13 +167,13 @@ class FinancialFile(BaseParser):
 
 
 if __name__ == "__main__":
-#    ff = FinancialFile("input/stocks/ylgf-300230/finance")
-    ff = FinancialFile("input/stocks/yxkj-300231/finance")
+    ff = FinancialFile("input/stocks/ylgf-300230/finance")
+#    ff = FinancialFile("input/stocks/yxkj-300231/finance")
     ff.doparse()
 #    print ff.allreports()
 #    print ff.oldestreport()
 #    print ff.latestreport()
-    print ff.yearreport(2017)
-    print ff.report(2017, 1)
+#    print ff.yearreport(2017)
+    print ff.report(2011, 2)
     pass
 

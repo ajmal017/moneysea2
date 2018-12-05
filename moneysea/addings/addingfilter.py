@@ -1,4 +1,4 @@
-class Base:
+class AddingFilter:
     def __init__(self, stock):
         self._stock = stock
         pass

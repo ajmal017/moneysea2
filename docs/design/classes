@@ -115,8 +115,6 @@ FinancialFile(BaseParser) #财务数据financial分析
     #allow user to access report using year and season
     ::yearreport(year)
     ::report(year, season)
-    ::latestreport()
-    ::oldestreport()
     ::allreports()
         #every report is a dict, keys: 
         .year
@@ -138,20 +136,32 @@ FinancialFile(BaseParser) #财务数据financial分析
         .sales_gross            #销售毛利率
         .product_turnover       #存货周转率
 
-Financial #more complex, include 365profit, various adding
-    :: init(stockid, (year, season)) #(year, season) is the baseline for adding caculate
-    :: addings()  #a dict
+FilterAdding
+    :: init(FinancialFile, (year, season)) #(year, season) is the baseline for adding caculate
     :: valid()
-
-Stock     #single stock
-    :: init(sid)
-    :: name()
-    :: e()
-    :: price()
-    :: Q()
-    :: q()
+    :: addings()
+    :: a()
     :: n()
     :: p()
+    :: e()
+
+Stock     #single stock
+    :: init(stockid, FilterAdding):
+    :: id()
+    :: name()
+    :: types()
+    :: industry()
+    :: price()
+    
+    :: valid()
+    :: addings()
+    :: a()
+    :: n()
+    :: p()
+    :: e()
+    :: eq()
+    :: q()
+    :: dratio()
 
 
 
