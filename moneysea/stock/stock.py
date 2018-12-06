@@ -9,7 +9,7 @@ class Stock:
         self._sid = sid
         self._name = Globals.get_instance().getstockidnamemapping().getname(sid)
         if self._name == "--":
-            raise Exception("Incorrect stock id")
+            af.indicatefail("Incorrect stock id")
 
         types = Globals.get_instance().gettypes()
         industry = types.industry(sid)
@@ -38,8 +38,13 @@ class Stock:
 
     # financial 
     def ffvalid(self):
+        fvld = self._af.ffvalid()
+        if not fvld[0]:
+            return fvld
+
         if self.price() < 0.000001:
             return (False, "PRICE")
+
         return self._af.ffvalid()
 
     def addings(self):
@@ -57,6 +62,8 @@ class Stock:
     def e(self):
         return self._af.e()
 
+    def ff(self):
+        return self._af._ff
 
 
     #e/q = (((p+1)/(a+1))**n) * p

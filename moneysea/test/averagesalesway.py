@@ -24,9 +24,9 @@ class AswAdding(AddingFilter):
         if last == None or last["sales"] == None:
             return (False, "FF-" + str(y - 1))
 
-        old = self._ff.yearreport(y - 4)
+        old = self._ff.yearreport(y - 3)
         if old == None or old["sales"] == None:
-            return (False, "FF-" + str(y - 4))
+            return (False, "FF-" + str(y - 3))
 
         self._addings["profit_adding"] = latest["profit_adding"]
         self._addings["profit2_adding"] = latest["profit2_adding"]
@@ -35,7 +35,7 @@ class AswAdding(AddingFilter):
         if old["sales"] < 10000000:
             return (False, "FF-" + str(y - 4))
 
-        avg = ((last["sales"]/old["sales"]) ** (1.0/3)) - 1
+        avg = ((last["sales"]/old["sales"]) ** (1.0/2)) - 1
         self._a = avg
         return (True, "OK")
 
@@ -87,7 +87,7 @@ class AverageSalesWay:
                 self.addin2(NN, v)
 
         for v in NN:
-            print v.name(), v.dratio()
+            print v.name(), v.addings(), v.a(),  v.dratio()
 
         pass
 

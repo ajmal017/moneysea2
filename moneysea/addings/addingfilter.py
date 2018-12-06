@@ -120,6 +120,9 @@ class AddingFilter:
         return (True, report, "OK")
 
     # for public access
+    def indicatefail(self, tag):
+        self._valid = (False, tag)
+        pass
     def ffvalid(self):
         return self._valid
 

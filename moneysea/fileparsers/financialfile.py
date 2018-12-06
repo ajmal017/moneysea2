@@ -11,7 +11,7 @@ import datetime
 # _data[4] _data[5] _data[6] _data[7] --- 2010 first, second, third, forth season report data
 
 class FinancialFile(BaseParser):
-    MAX_YEARS = 8  #max years of data to save for parsing
+    MAX_YEARS = 18  #max years of data to save for parsing
 
     def __init__(self, filepath):
         BaseParser.__init__(self, filepath)
