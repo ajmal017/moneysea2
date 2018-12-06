@@ -1,6 +1,7 @@
 
 from moneysea.actions.baseaction import BaseAction
 from moneysea.test.stasticsfinancials import StasticsFinancials
+from moneysea.test.ways import Ways
 
 class ShowAction(BaseAction):
     def cmd(self):
@@ -18,7 +19,7 @@ class ShowAction(BaseAction):
 
 class TestAction(BaseAction):
     def __init__(self):
-        self._actions = [StasticsFinancials, ShowAction]
+        self._actions = [StasticsFinancials, Ways, ShowAction]
         pass
 
     def cmd(self):

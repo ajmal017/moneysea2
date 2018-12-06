@@ -105,8 +105,6 @@ class StasticsFinancials(BaseAction):
             if ff[0]:
                 valid += 1
             else:
-                if ff[1] == "OK":
-                    raise
                 self.stat_add(ff[1])
 
         print ""
