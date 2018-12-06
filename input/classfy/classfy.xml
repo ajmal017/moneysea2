@@ -29,7 +29,9 @@
     <type name="highway" cname="交通运输>高速" filetype="industry" filepath="input/classfy/highway"/>
     <type name="airport" cname="交通运输>机场" filetype="industry" filepath="input/classfy/airport"/>
     <type name="seaport" cname="交通运输>港口" filetype="industry" filepath="input/classfy/seaport"/>
-    <type name="shipping" cname="交通运输>船运" filetype="industry" filepath="input/classfy/shipping"/>
-    <type name="airline" cname="交通运输>航空" filetype="industry" filepath="input/classfy/airline"/>
+    <type name="shipping" cname="交通运输>航运" filetype="industry" filepath="input/classfy/shipping"/>
+    <type name="airline" cname="交通运输>航空运输" filetype="industry" filepath="input/classfy/airline"/>
+    <type name="express" cname="交通运输>物流" filetype="industry" filepath="input/classfy/express"/>
+    <type name="h-service" cname="医药生物>医疗服务" filetype="industry" filepath="input/classfy/h-service"/>
 
 </xml>

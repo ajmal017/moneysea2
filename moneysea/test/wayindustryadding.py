@@ -37,7 +37,7 @@ class WayIndustryAdding:
         pass
 
     AF = IndustryAdding
-    START = 2006
+    START = 2005
     END = 2018
 
     def run(self, typ):
@@ -54,6 +54,7 @@ class WayIndustryAdding:
         
         print "stocks: ", len(self._slist)
         self.draw()
+        plt.show()
 
     def draw(self):
         ax = []
@@ -69,7 +70,33 @@ class WayIndustryAdding:
             prev = profit
 
         plt.scatter(ax, ay, color='blue')
-        plt.show()
+
+        ax2 = []
+        ay2 = []
+        for i in range(0, len(ay), 6):
+            try:
+                tmp = (ay[i] + ay[i + 1] + ay[i + 2] + ay[i + 3] + ay[i + 4] + ay[i + 5])/6
+                ax2.append(self.START + i + 5)
+                ay2.append(tmp)
+            except Exception as e:
+                print e
+        plt.scatter(ax2, ay2, color='red')
+
+        ax3 = []
+        ay3 = []
+        prev = 0
+        for i in range(self.START, self.END, 6):
+            profit = self.getprofit(i) / 1000
+            if profit < 0 and i == self.START:
+                continue
+            if prev != 0:
+                delta = ((profit / prev)**(1.0/6)) - 1
+                ax3.append(i)
+                ay3.append(delta)
+            prev = profit
+
+        plt.scatter(ax3, ay3, color='black')
+            
 
 
     def getprofit(self, year):
