@@ -49,6 +49,7 @@ year: 2017  total: 15
 中国电影 600977
 韵达股份 002120
 华新水泥 600801
+梅泰诺 300038
 
 python moneysea test way avgsales
 
@@ -70,9 +71,13 @@ richard@rv:~/sw/stock/moneysea2$ python moneysea test way avgsales | grep 电影
 richard@rv:~/sw/stock/moneysea2$ python moneysea test way avgsales | grep 韵达
 韵达股份 {'sales_adding': 35.23, 'profit2_adding': 23.99, 'profit_adding': 68.42} 0.405792207847 1.31226385005   ----------------- Dratio Good
 >>
+richard@rv:~/sw/stock/moneysea2$ python moneysea test way avgsales | grep 梅泰诺
+梅泰诺 {'sales_adding': 86.16, 'profit2_adding': 75.04, 'profit_adding': 74.42} 0.892625491216 12.4721999274
+>>
 
 联建 =>  塔牌集团
 广汽集团 =>  韵达股份 
+xx => 梅泰诺
 
 
 
