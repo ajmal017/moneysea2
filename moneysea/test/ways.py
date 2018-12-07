@@ -2,6 +2,7 @@
 from moneysea.actions.baseaction import BaseAction
 from moneysea.test.averagesalesway import AverageSalesWay
 from moneysea.test.wayindustryadding import WayIndustryAdding
+from moneysea.test.wayindicatoradding import WayIndicatorAdding
 
 class Ways(BaseAction):
     def cmd(self):
@@ -11,6 +12,7 @@ class Ways(BaseAction):
         return '''Ways on selecting stocks:
                             avgsales    Consider average sales as adding
                             industry    industry adding predict
+                            indicator   indicator investigate
                 ''' 
 
     def description(self):
@@ -30,6 +32,12 @@ class Ways(BaseAction):
                 return
             wid = WayIndustryAdding()
             wid.run(args[1])
+        elif args[0] == "indicator":
+            if len(args) < 2:
+                print "please specific param"
+                return
+            wia = WayIndicatorAdding()
+            wia.run(args[1])
         else:
             print "Unknow ways"
 
