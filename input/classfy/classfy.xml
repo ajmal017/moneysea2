@@ -33,5 +33,7 @@
     <type name="airline" cname="交通运输>航空运输" filetype="industry" filepath="input/classfy/airline"/>
     <type name="express" cname="交通运输>物流" filetype="industry" filepath="input/classfy/express"/>
     <type name="h-service" cname="医药生物>医疗服务" filetype="industry" filepath="input/classfy/h-service"/>
+    <type name="biologicals" cname="医药生物>生物制品" filetype="industry" filepath="input/classfy/biologicals"/>
+    <type name="cnmedicine" cname="医药生物>中药" filetype="industry" filepath="input/classfy/cnmedicine"/>
 
 </xml>
