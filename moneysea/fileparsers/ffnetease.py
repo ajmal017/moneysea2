@@ -169,7 +169,7 @@ class FFNetEase(BaseParser):
 
 
 if __name__ == "__main__":
-    ff = FFNetEase("input/stocks-netease/300230")
+    ff = FFNetEase("input/stocks-netease/zycwzb_002495.html?type=report")
     ff.doparse()
 #    print ff.allreports()
 #    print ff.oldestreport()
@@ -177,7 +177,7 @@ if __name__ == "__main__":
     r = ff.yearreport(2017)
 #    print ff.report(2011, 2)
     from financialfile import FinancialFile
-    ff2 = FinancialFile("input/stocks/ylgf-300230/finance")
+    ff2 = FinancialFile("input/stocks/jlgf-002495/finance")
     ff2.doparse()
     r2 = ff2.yearreport(2017)
 
@@ -197,7 +197,7 @@ if __name__ == "__main__":
                 continue
 
             delta = abs(r[k] - r2[m])/abs(r[k])
-            if abs(delta) < 0.01:
+            if abs(delta) < 0.2:
                 print k, "---", m, ": match", delta
 
     pass
