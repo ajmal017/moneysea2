@@ -39,17 +39,18 @@ class IndicatorAdding(AddingFilter):
             y = self._ff.yearreport(bl["year"])
 #            if y["profit_adding"] == None:
 #                return (False, "FF-1")
-            if bl["profit_adding"] < 60:
+            if bl["profit_adding"] < 20:
                 return (False, "DISCARD")
             if bl["profit2_adding"] < 0:
                 return (False, "DISCARD")
             if bl["sales_adding"] < 0:
                 return (False, "DISCARD")
-            if bl["profit"] < 500000000:
+            if bl["profit"] < 50000000:
                 return (False, "DISCARD")
         except:
             return (False, "FF-2")
 
+#        print self._sid, bl["profit_adding"], bl["profit2_adding"], bl["sales_adding"], bl["profit"]
         return (True, "OK")
 
 
@@ -142,8 +143,8 @@ class WayIndicatorAdding:
         pass
 
     S3AF = IndicatorAdding
-    START = 2011
-    END = 2013
+    START = 2010
+    END = 2018
     A5AF = Average5Adding
 
     def run(self, arg):
@@ -240,6 +241,7 @@ class WayIndicatorAdding:
 
     def season3_result(self):
         print ""
+        count = 0
         for s in self._all:
             af = self.S3AF(s)
             stock = Stock(s, af)
@@ -247,6 +249,8 @@ class WayIndicatorAdding:
             if not ffv[0]:
                 continue
             print stock.name(), stock.id()
+            count += 1
+        print count
 
 
     def season3_year(self):

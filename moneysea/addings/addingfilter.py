@@ -36,7 +36,7 @@ class AddingFilter:
             ins = Globals.get_instance().getinputstocks()
             self._path = ins.getpath(stockid)
 #            self._ff = FinancialFile(self._path + "/finance")    #revertback
-            self._ff = FFNetEase(self._path)    #revertback
+            self._ff = FFNetEase(self._path)
             self._ff.doparse()
 
             latest = self._ff.latestreport()

@@ -1,0 +1,23 @@
+1. get all stocks that 年度增长大概率 > 30%
+python moneysea test way indicator season3
+=>operation/buysell-1211-season3 938只
+
+2. 获得年度预告
+留下年度预告平均增长率 > 3季度的实际增长率
+python tools/reportprocess.py  
+    1). rp.downloadreports()
+    2). rp.run()
+=>operation/buysell-1211-reportprocess 162只
+
+3. eq 计算
+3.1 按照 预告平均增长率
+3.2 按照过去两年扣非净利率增长率
+3.3 按照过去两年销售平均增长率
+
+
+上述 3总增长率，求出的eq前一半取交集？
+
+4. 从交集中，选出不同行业，或者明星行业，买入
+
+
+5. 预测一季度的增长率

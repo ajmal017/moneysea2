@@ -65,6 +65,9 @@ class Stock:
     def ff(self):
         return self._af._ff
 
+    def baseline(self):
+        return self._af._baseline
+
 
     #e/q = (((p+1)/(a+1))**n) * p
     def eq(self):

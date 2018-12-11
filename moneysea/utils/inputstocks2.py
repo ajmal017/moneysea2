@@ -1,9 +1,11 @@
 from moneysea.fileparsers.inputstocksdir2 import InputStocksDir2
+from moneysea.fileparsers.inputstocksdir import InputStocksDir
 from moneysea.config import Config
 
 class InputStocks2:
     def __init__(self):
         self._dir = InputStocksDir2(Config.STOCKS_PATH2)
+#        self._dir = InputStocksDir(Config.STOCKS_PATH)
         self._dir.doparse()
         pass
 
