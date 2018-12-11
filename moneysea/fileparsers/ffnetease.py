@@ -60,8 +60,28 @@ class FFNetEase(BaseParser):
 
             i += 1
 
+        for index in range(self._oldest + 4, self._latest + 1):
+            fd = self._data[index]
+            if fd == None:
+                continue
+            pfd = self._data[index - 4]
+            if pfd == None:
+                continue
+
+            fd["profit_adding"] = self.adding(pfd, fd, "profit")
+            fd["profit2_adding"] = self.adding(pfd, fd, "profit2")
+            fd["sales_adding"] = self.adding(pfd, fd, "sales")
+
         if not self.verify():
             raise ValueError(self._filepath + " parsing verifying failed")
+
+    def adding(self, pfd, fd, tag):
+        if pfd[tag] == None or fd[tag] == None:
+            return
+        if pfd[tag] < 1000000:
+            return
+        ratio = (fd[tag] - pfd[tag])/pfd[tag]
+        return ratio * 100
 
     def verify(self):
         '''
@@ -100,6 +120,7 @@ class FFNetEase(BaseParser):
                 fd[key] = None
             index += 1
 
+        fd["profit_adding"] = None
         return fd
 
     def year_season(self, date):

@@ -1,6 +1,7 @@
 from moneysea.utils.types import Types
 from moneysea.utils.stockidnamemapping import StockIdNameMapping
 from moneysea.utils.inputstocks import InputStocks
+from moneysea.utils.inputstocks2 import InputStocks2
 from moneysea.utils.holdedrecord import HoldedRecord
 from moneysea.utils.oneholdedrecord import OneHoldedRecord
 from moneysea.utils.prices import Prices
@@ -36,7 +37,7 @@ class Globals:
 
     def getinputstocks(self):         #return InputStocks
         if self._inputstocks == None:
-            self._inputstocks = InputStocks()
+            self._inputstocks = InputStocks2() #InputStocks()                           #revertback
         return self._inputstocks
 
     def getallholdedrecords(self):      #return HoldedStocks

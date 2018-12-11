@@ -1,11 +1,9 @@
 from moneysea.fileparsers.inputstocksdir2 import InputStocksDir2
-from moneysea.fileparsers.inputstocksdir import InputStocksDir
 from moneysea.config import Config
 
-class InputStocks:
+class InputStocks2:
     def __init__(self):
-        self._dir = InputStocksDir(Config.STOCKS_PATH)
-#        self._dir = InputStocksDir2(Config.STOCKS_PATH2)
+        self._dir = InputStocksDir2(Config.STOCKS_PATH2)
         self._dir.doparse()
         pass
 
@@ -13,7 +11,7 @@ class InputStocks:
         return self._dir.allstocks()
 
     def getpath(self, stockid):               #return path of the stock
-        return Config.STOCKS_PATH + "/" + self._dir.allstocks()[stockid] + "-" + stockid
+        return Config.STOCKS_PATH2 + "/" + "zycwzb_" + stockid + ".html?type=report"
 
     def getpinyin(self, stockid):
         return self._dir.allstocks()[stockid]
@@ -28,6 +26,6 @@ class InputStocks:
 
 
 if __name__ == "__main__":
-    iss = InputStocks()
+    iss = InputStocks2()
     print iss.allstocks()
-    
+    print iss.getpath("300230")

@@ -2,6 +2,7 @@
 from moneysea.globals import Globals
 from moneysea.config import Config
 from moneysea.fileparsers.financialfile import FinancialFile
+from moneysea.fileparsers.ffnetease import FFNetEase
 import datetime
 
 class AddingFilter:
@@ -34,7 +35,8 @@ class AddingFilter:
         try:
             ins = Globals.get_instance().getinputstocks()
             self._path = ins.getpath(stockid)
-            self._ff = FinancialFile(self._path + "/finance")
+#            self._ff = FinancialFile(self._path + "/finance")    #revertback
+            self._ff = FFNetEase(self._path)    #revertback
             self._ff.doparse()
 
             latest = self._ff.latestreport()

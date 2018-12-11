@@ -291,6 +291,8 @@ class WayIndicatorAdding:
 
         print ""
         for k in keys:
+            if total == 0:
+                continue
             print "%8.2f"%((stat[k]) * 100.0 / total),
         pass
 

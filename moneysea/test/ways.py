@@ -12,7 +12,7 @@ class Ways(BaseAction):
         return '''Ways on selecting stocks:
                             avgsales    Consider average sales as adding
                             industry    industry adding predict
-                            indicator   indicator investigate
+                            indicator   indicator investigate [season3 or average5]
                 ''' 
 
     def description(self):
