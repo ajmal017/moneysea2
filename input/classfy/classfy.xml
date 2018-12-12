@@ -35,5 +35,74 @@
     <type name="h-service" cname="医药生物>医疗服务" filetype="industry" filepath="input/classfy/h-service"/>
     <type name="biologicals" cname="医药生物>生物制品" filetype="industry" filepath="input/classfy/biologicals"/>
     <type name="cnmedicine" cname="医药生物>中药" filetype="industry" filepath="input/classfy/cnmedicine"/>
+    <type name="health_machine" cname="医药生物>医疗器械" filetype="industry" filepath="input/classfy/health_machine"/>
+    <type name="health_shop" cname="医药生物>医药商业" filetype="industry" filepath="input/classfy/health_shop"/>
+    <type name="health_make" cname="医药生物>化学制药" filetype="industry" filepath="input/classfy/health_make"/>
+    <type name="cloth_make" cname="纺织服装>纺织制造" filetype="industry" filepath="input/classfy/cloth_make"/>
+    <type name="cloth_shop" cname="纺织服装>服装商店" filetype="industry" filepath="input/classfy/cloth_shop"/>
+    <type name="elec_others" cname="电子>其它电子" filetype="industry" filepath="input/classfy/elec_others"/>
+    <type name="elec_cells" cname="电子>元器件" filetype="industry" filepath="input/classfy/elec_cells"/>
+    <type name="elec_light" cname="电子>光学光电子" filetype="industry" filepath="input/classfy/elec_light"/>
+    <type name="elec_semi" cname="电子>半导体" filetype="industry" filepath="input/classfy/elec_semi"/>
+    <type name="steel" cname="钢铁" filetype="industry" filepath="input/classfy/steel"/>
+    <type name="oil" cname="采掘>石油开采" filetype="industry" filepath="input/classfy/oil"/>
+    <type name="dig_service" cname="采掘>采掘服务" filetype="industry" filepath="input/classfy/dig_service"/>
+    <type name="dig_carbol" cname="采掘>煤矿" filetype="industry" filepath="input/classfy/dig_carbol"/>
+    <type name="dig_others" cname="采掘>其它" filetype="industry" filepath="input/classfy/dig_others"/>
+    <type name="comm_op" cname="通讯>运营" filetype="industry" filepath="input/classfy/commu_op"/>
+    <type name="comm_device" cname="通讯>设备" filetype="industry" filepath="input/classfy/commu_device"/>
+    <type name="computer_app" cname="计算机>应用" filetype="industry" filepath="input/classfy/computer_app"/>
+    <type name="computer_dev" cname="计算机>设备" filetype="industry" filepath="input/classfy/computer_dev"/>
+    <type name="machine_s" cname="机械制品>金属" filetype="industry" filepath="input/classfy/machine_s"/>
+    <type name="machine_tr" cname="机械制品>运输设备" filetype="industry" filepath="input/classfy/machine_tr"/>
+    <type name="machine_yq" cname="机械制品>仪器仪表" filetype="industry" filepath="input/classfy/machine_yq"/>
+    <type name="machine_special" cname="机械制品>专用设备" filetype="industry" filepath="input/classfy/machine_special"/>
+    <type name="machine_common" cname="机械制品>通用设备" filetype="industry" filepath="input/classfy/machine_common"/>
+    <type name="house_build" cname="建筑装饰>房屋建设" filetype="industry" filepath="input/classfy/house_build"/>
+    <type name="park_build" cname="建筑装饰>公园建设" filetype="industry" filepath="input/classfy/park_build"/>
+    <type name="base_build" cname="建筑装饰>基础建设" filetype="industry" filepath="input/classfy/base_build"/>
+    <type name="decro_build" cname="建筑装饰>装修装饰" filetype="industry" filepath="input/classfy/decro_build"/>
+    <type name="special_build" cname="建筑装饰>专业工程" filetype="industry" filepath="input/classfy/special_build"/>
+    <type name="fina_sure" cname="非银金融>保险" filetype="industry" filepath="input/classfy/fina_sure"/>
+    <type name="fina_others" cname="非银金融>多元金融" filetype="industry" filepath="input/classfy/fina_others"/>
+    <type name="fina_quan" cname="非银金融>证券" filetype="industry" filepath="input/classfy/fina_quan"/>
+    <type name="life_trip" cname="休闲服务>景点" filetype="industry" filepath="input/classfy/life_trip"/>
+    <type name="life_hotel" cname="休闲服务>酒店" filetype="industry" filepath="input/classfy/life_hotel"/>
+    <type name="life_trips" cname="休闲服务>旅游综合" filetype="industry" filepath="input/classfy/life_trips"/>
+    <type name="life_others" cname="休闲服务>其它" filetype="industry" filepath="input/classfy/life_others"/>
+    <type name="office_build" cname="房地产>园区开发" filetype="industry" filepath="input/classfy/office_build"/>
+    <type name="home_build" cname="房地产>房地产" filetype="industry" filepath="input/classfy/home_build"/>
+    <type name="gas" cname="公共>燃气" filetype="industry" filepath="input/classfy/gas"/>
+    <type name="power_elec" cname="公共>电力" filetype="industry" filepath="input/classfy/power_elec"/>
+    <type name="water" cname="公共>供水" filetype="industry" filepath="input/classfy/water"/>
+    <type name="environment" cname="公共>环境" filetype="industry" filepath="input/classfy/environment"/>
+    <type name="include" cname="轻工>包装" filetype="industry" filepath="input/classfy/include"/>
+    <type name="paper" cname="轻工>造纸" filetype="industry" filepath="input/classfy/paper"/>
+    <type name="qg_home" cname="轻工>家用" filetype="industry" filepath="input/classfy/qg_home"/>
+    <type name="drink" cname="食品>饮料" filetype="industry" filepath="input/classfy/drink"/>
+    <type name="food" cname="食品>食品" filetype="industry" filepath="input/classfy/food"/>
+    <type name="car" cname="汽车>汽车服务" filetype="industry" filepath="input/classfy/car"/>
+    <type name="car_make" cname="汽车>汽车整车" filetype="industry" filepath="input/classfy/car_make"/>
+    <type name="car_cells" cname="汽车>零件" filetype="industry" filepath="input/classfy/car_cells"/>
+    <type name="car_others" cname="汽车>其它" filetype="industry" filepath="input/classfy/car_others"/>
+    <type name="gold" cname="金属>黄金" filetype="industry" filepath="input/classfy/car_gold"/>
+    <type name="meta_ind" cname="金属>工业金属" filetype="industry" filepath="input/classfy/metal_ind"/>
+    <type name="meta_few" cname="金属>稀有金属" filetype="industry" filepath="input/classfy/metal_few"/>
+    <type name="meta_others" cname="金属>新材料" filetype="industry" filepath="input/classfy/metal_others"/>
+    <type name="chemical_xw" cname="化工>纤维" filetype="industry" filepath="input/classfy/chemical_xw"/>
+    <type name="chemical_xj" cname="化工>橡胶" filetype="industry" filepath="input/classfy/chemical_xj"/>
+    <type name="chemical_yl" cname="化工>原料" filetype="industry" filepath="input/classfy/chemical_yl"/>
+    <type name="chemical_sl" cname="化工>塑料" filetype="industry" filepath="input/classfy/chemical_sl"/>
+    <type name="chemical_cells" cname="化工>制品" filetype="industry" filepath="input/classfy/chemical_cells"/>
+    <type name="chemical_oil" cname="化工>石油" filetype="industry" filepath="input/classfy/chemical_oil"/>
+    <type name="agriculture_sail" cname="农林牧渔>综合" filetype="industry" filepath="input/classfy/agriculture_sail"/>
+    <type name="agriculture_trees" cname="农林牧渔>林业" filetype="industry" filepath="input/classfy/agriculture_trees"/>
+    <type name="agriculture_raise" cname="农林牧渔>养殖" filetype="industry" filepath="input/classfy/agriculture_raise"/>
+    <type name="agriculture_fish" cname="农林牧渔>渔业" filetype="industry" filepath="input/classfy/agriculture_fish"/>
+    <type name="agriculture_plant" cname="农林牧渔>种植" filetype="industry" filepath="input/classfy/agriculture_plant"/>
+    <type name="agriculture_make" cname="农林牧渔>加工" filetype="industry" filepath="input/classfy/agriculture_make"/>
+    <type name="agriculture_an" cname="农林牧渔>动物保健" filetype="industry" filepath="input/classfy/agriculture_an"/>
+    <type name="agriculture_feed" cname="农林牧渔>饲料" filetype="industry" filepath="input/classfy/agriculture_feed"/>
+
 
 </xml>

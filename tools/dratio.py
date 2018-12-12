@@ -1,5 +1,6 @@
 from moneysea.addings.addingfilter import AddingFilter
 from moneysea.stock.stock import Stock
+from moneysea.globals import Globals
 
 class DratioAdding(AddingFilter):
     def seta(self, a):
@@ -41,9 +42,12 @@ class Dratio:
             dic = lists[i]
             #sort
             ll = self.sort(dic)
-            end = len(ll)/2
+            end = len(ll)/3
             LL.append(ll[0:end])
 
+        types = Globals.get_instance().gettypes()
+
+        print "id,      name,   profit_adding,          profit2_adding,         sales_adding, sales_adding"
         for d in LL[0]:
             d1 = self.item(d[0], LL[1])
             d2 = self.item(d[0], LL[2])
@@ -53,7 +57,12 @@ class Dratio:
 
             af = DratioAdding(d[0])
             stock = Stock(d[0], af)
-            print stock.id(), stock.name()
+            idt = types.industry(d[0])
+            tt = ""
+            if idt != None:
+                tt = idt["cname"]
+            print stock.id(), "(%3.1f %12.1f), (%3.1f, %12.1f), (%3.1f, %12.1f), (%3.1f, %12.1f)"%(d[1], d[2], d1[1], d1[2], d2[1], d2[2], d3[1], d3[2]), "\t", stock.name(), "\t", tt
+
         pass
 
     def item(self, idx, ll):

@@ -53,7 +53,7 @@ class DefaultAdding(AddingFilter):
         self._addings["365"] = tmp[1]
 
         # 3. set self._a
-        self._a = (self._addings["report"] + self._addings["history"] + self._addings["365"])/3
+        self._a = self._addings["report"] #(self._addings["report"] + self._addings["history"] + self._addings["365"])/3
         return (True, "TEST")
 
     @classmethod
