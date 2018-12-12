@@ -122,6 +122,7 @@ class ReportProcess:
 
     def accessreport(self, sid):
         url = "http://quotes.money.163.com/f10/yjyg_" + sid + ".html#01c03"
+#        url = "http://quotes.money.163.com/f10/gdfx_" + sid + ".html#01d02"
         command = 'wget ' + url
         print command
         call_params = shlex.split(command)

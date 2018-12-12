@@ -1,3 +1,4 @@
+# coding=utf-8
 from moneysea.addings.addingfilter import AddingFilter
 from moneysea.stock.stock import Stock
 from moneysea.globals import Globals
@@ -6,12 +7,41 @@ class DratioAdding(AddingFilter):
     def seta(self, a):
         self._a = a
 
+    def sete(self, e):
+        self._e = e
+
+    def e(self):
+        return self._e
+
     def a(self):
         return self._a
 
 class Dratio:
     def __init__(self):
         pass
+
+    def gete(self, stock, bs, r2017):
+        with open("output/gdfx_" + stock.id() + ".html") as f:
+            access = False
+            for line in f:
+                if "总股本" in line:
+                    access = True
+                    continue
+                if access:
+                    try:
+                        tmp = line.split(">")[1].split("<")[0].replace(",", "")
+                        total = float(tmp) * 10000 * 10000
+                    except Exception as e:
+                        return None
+                    break
+        p1 = bs["per_share_earnings"] * total
+        delta = (bs["profit"] - p1)/p1
+        if abs(delta) > 0.1:
+            return None
+        e = r2017["profit"] / total
+        if e < 0.1:
+            return None
+        return e
 
     def run(self):
         ss = self.stocks()
@@ -23,10 +53,11 @@ class Dratio:
             bs = stock.baseline()
             r2017 = stock.ff().yearreport(2017)
 
-            if stock.e() < 0.2:             # too small which will cause wuca
-#                print stock.name(), stock.id(), stock.e()
+            e = self.gete(stock, bs, r2017)
+            if e == None:
                 continue
-
+            stock._af.sete(e)
+            
             index = 0
             for a in (ss[idx], bs["profit2_adding"], bs["sales_adding"], r2017["sales_adding"]):
                 stock._af.seta(a/100.0)
@@ -37,12 +68,13 @@ class Dratio:
                 index += 1
 
 
+
         LL = []
         for i in range(0, 4):
             dic = lists[i]
             #sort
             ll = self.sort(dic)
-            end = len(ll)*5/12
+            end = len(ll)*6/12
 #            end = len(ll)
             LL.append(ll[0:end])
 
