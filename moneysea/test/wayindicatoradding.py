@@ -143,7 +143,7 @@ class WayIndicatorAdding:
         pass
 
     S3AF = IndicatorAdding
-    START = 2010
+    START = 2017
     END = 2018
     A5AF = Average5Adding
 

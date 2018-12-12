@@ -10,24 +10,33 @@ class ReportProcess:
         pass
     def run(self):
         ss = self.stocks()
-
         for s in ss:
             af = AddingFilter(s)
             stock = Stock(s, af)
             bs = stock.baseline()
 #            print stock.name(), stock.id(), bs["profit"], bs["profit_adding"], bs["profit2_adding"], bs["sales_adding"]
             rlt = self.processreport(s)
-            if not rlt[0]:
-                continue
 
-            if rlt[1] != None and (rlt[1] + 10) < bs["profit_adding"]:  #四季度增长基本加快
+            adding = bs["profit_adding"]
+            if not rlt[0]:
+                if adding > 40:
+                    print stock.name(), stock.id(), "None", adding
+                    pass
                 continue
 
             if rlt[1] == None:
-                val = bs["profit_adding"]
-            else:
-                val = (rlt[1] + bs["profit_adding"])/2
-            print stock.id(), stock.name(), val
+                if adding > 30:
+                    print stock.name(), stock.id(), "V", adding
+                    pass
+                continue
+
+            if rlt[1] < adding:  #四季度增长下滑, 但是仍然 > 30%
+                if rlt[1] > 30:
+                    print stock.name(), stock.id(), rlt[1], adding
+                    pass
+                continue
+            # then rlt[1] > adding > 20%
+            print stock.name(), stock.id(), rlt[1], adding
         pass
 
     def processreport(self, sid):
@@ -123,7 +132,7 @@ class ReportProcess:
 
     def stocks(self):
         ss = []
-        with open("operation/season3_result") as f:
+        with open("operation/buysell-1211-season3") as f:
             for line in f:
                 items = line.split()
                 if len(items) != 2:

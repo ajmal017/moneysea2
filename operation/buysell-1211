@@ -1,23 +1,48 @@
-1. get all stocks that 年度增长大概率 > 30%
-python moneysea test way indicator season3
-=>operation/buysell-1211-season3 938只
+1. 挑出年度净利率增长 > 30%的股票，且增长可能加快的
+   a. 3季度增长 > 20%的股票， 且扣非增长 > 0, 销售增长 > 0, 净利润总额 > 5000万
+      排除净利率小的，被操纵的股票；排除类似康佳A，卖房提高净利率的
 
-2. 获得年度预告
-留下年度预告平均增长率 > 3季度的实际增长率
-python tools/reportprocess.py  
-    1). rp.downloadreports()
-    2). rp.run()
-=>operation/buysell-1211-reportprocess 162只
+      python moneysea test way indicator season3
+      =>operation/buysell-1211-season3 938只
+
+   b. 取这些股票的预告，选出
+      . 无预告但3季度 > 40% ---------- 大概率年增长 > 30%
+      . 预告大幅增长，且3季度 > 30%
+      . 有预告，预告>3季度 或者 预告 > 30%
+     
+   输出：
+    Name ID  预告    profit_adding
+             None
+             V
+             value
+
+      b.1: 获得年度预告
+        python tools/reportprocess.py  
+                rp.downloadreports()
+
+      b.2 选择
+        python tools/reportprocess.py  
+                rp.run()
+        peration/buysell-1211-reportprocess 602只
+
 
 3. eq 计算
-3.1 按照 预告平均增长率
-3.2 按照过去两年扣非净利率增长率
-3.3 按照过去两年销售平均增长率
+选择下面增长做为 eq 增长计算
+   . 2017销售增长 --- 因为2018销售是增长的，意味着净利率的增长和销售增长很有可能正相关
+   . 3季度销售增长 --- 挑选增长好的
+   . 3季度扣非净利率 --- 挑选扣非好的，避免一些股票非主营收入带来的增长
+   . 年度净利率增长 --- 
 
+上述每个增长对应的dratio排序，选择前一半或前1/3，所有增长的交集
 
-上述 3总增长率，求出的eq前一半取交集？
+4. 平均eq和dratio排序
+取3中各增长的平均值做为增长值，得出dratio的排序，从排序中选择股票，最好不同行业
+    . 选择好的行业
+    . 选择没有大量解禁的，如永利股份
+    . 选择股东购入的
 
-4. 从交集中，选出不同行业，或者明星行业，买入
+5. 跟进
+5.1 每天跟进 holded 股票的预告，新闻
+5.2 每周重复 1 ~ 4
 
-
-5. 预测一季度的增长率
+6. 预测一季度的增长率
