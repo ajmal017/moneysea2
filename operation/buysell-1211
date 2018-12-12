@@ -35,6 +35,7 @@
 
 上述每个增长对应的dratio排序，选择前一半或前1/3，所有增长的交集
 
+#python moneysea price
 #python tools/dratio.py
 
 4. 选择股票

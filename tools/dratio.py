@@ -42,26 +42,46 @@ class Dratio:
             dic = lists[i]
             #sort
             ll = self.sort(dic)
-            end = len(ll)/3
+            end = len(ll)*5/12
             LL.append(ll[0:end])
 
         types = Globals.get_instance().gettypes()
 
-        print "id,      name,   profit_adding,          profit2_adding,         sales_adding, sales_adding"
+        for tt in types.industries():
+            stocks = tt["stocks"]
+            tmp = tt["cname"]
+            for d in LL[0]:
+                d1 = self.item(d[0], LL[1])
+                d2 = self.item(d[0], LL[2])
+                d3 = self.item(d[0], LL[3])
+                if d1 == None or d2 == None or d3 == None:
+                    continue
+
+                if not d[0] in stocks:
+                    continue
+
+                af = DratioAdding(d[0])
+                stock = Stock(d[0], af)
+                idt = types.industry(d[0])
+                print stock.id(), "(%3.1f %12.1f), (%3.1f, %12.1f), (%3.1f, %12.1f), (%3.1f, %12.1f)"%(d[1], d[2], d1[1], d1[2], d2[1], d2[2], d3[1], d3[2]), "\t", stock.name(), "\t", tmp
+
+        count = 0
         for d in LL[0]:
             d1 = self.item(d[0], LL[1])
             d2 = self.item(d[0], LL[2])
             d3 = self.item(d[0], LL[3])
             if d1 == None or d2 == None or d3 == None:
                 continue
+            count += 1
 
             af = DratioAdding(d[0])
             stock = Stock(d[0], af)
             idt = types.industry(d[0])
-            tt = ""
             if idt != None:
-                tt = idt["cname"]
-            print stock.id(), "(%3.1f %12.1f), (%3.1f, %12.1f), (%3.1f, %12.1f), (%3.1f, %12.1f)"%(d[1], d[2], d1[1], d1[2], d2[1], d2[2], d3[1], d3[2]), "\t", stock.name(), "\t", tt
+                continue
+            print stock.id(), "(%3.1f %12.1f), (%3.1f, %12.1f), (%3.1f, %12.1f), (%3.1f, %12.1f)"%(d[1], d[2], d1[1], d1[2], d2[1], d2[2], d3[1], d3[2]), "\t", stock.name()
+
+        print "total:", count
 
         pass
 
