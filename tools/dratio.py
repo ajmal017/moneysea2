@@ -43,7 +43,11 @@ class Dratio:
             #sort
             ll = self.sort(dic)
             end = len(ll)*5/12
+#            end = len(ll)
             LL.append(ll[0:end])
+
+#        self.holded(LL)
+#        return
 
         types = Globals.get_instance().gettypes()
 
@@ -82,7 +86,23 @@ class Dratio:
             print stock.id(), "(%3.1f %12.1f), (%3.1f, %12.1f), (%3.1f, %12.1f), (%3.1f, %12.1f)"%(d[1], d[2], d1[1], d1[2], d2[1], d2[2], d3[1], d3[2]), "\t", stock.name()
 
         print "total:", count
+        pass
 
+    def holded(self, LL):
+        lhd = Globals.get_instance().getlatestholdedrecord()
+        stocks = lhd.stocks()
+        for ss in stocks:
+            af = DratioAdding(ss)
+            stock = Stock(ss, af)
+            print stock.name()
+            d0 = self.item(ss, LL[0])
+            d1 = self.item(ss, LL[1])
+            d2 = self.item(ss, LL[2])
+            d3 = self.item(ss, LL[3])
+            print d0
+            print d1
+            print d2
+            print d3
         pass
 
     def item(self, idx, ll):

@@ -48,7 +48,7 @@ class Globals:
     def getlatestholdedrecord(self):   #return OneHoldedRecord
         if self._latestholdedrecord == None:
             hr = self.getallholdedrecords()
-        self._latestholdedrecord = OneHoldedRecord(hr.getrecordpath(-1))
+            self._latestholdedrecord = OneHoldedRecord(hr.getrecordpath(-1))
         return self._latestholdedrecord
 
 
