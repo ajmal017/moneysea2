@@ -87,7 +87,8 @@ COMMAND:
                         continue
                     if "holded" == t:
                         continue
-                    print "\t", t,
+                    tp = types.typeproperty(t)["cname"]
+                    print "\t", tp,
 
                 print ""
 
