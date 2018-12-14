@@ -1,0 +1,62 @@
+1. 概览
+
+                actions
+-------------------------------------------
+    
+
+    select algorithms, statistics, etc
+
+
+-------------------------------------------
+        Globals (single instance)
+
+                |  |  |
+
+                |  |  |
+               resources 
+
+              file parsers
+
+                inputs
+
+
+基本框架如上图
+
+. 对于单纯的信息显示，actions 直接调用globals获得resources, 进行显示
+. 对于算法相关的功能，actions 调用相关的算法类，算法类调用 Globals访问相应的resources
+
+
+
+2. 详细描述
+2.1 types
+列出分类和显示分类下的股票信息, typesaction 直接访问 Globals获取 types类
+详细见 resources-classes/types
+
+2.2 parse
+如果只是显示股票的基本信息，则直接 parseaction 访问 Globals获取 stock类
+如果还要显示它在指定算法下的评价，则和select类打交道
+
+2.3 update
+update action 直接调用update下面的类
+
+2.4 holded
+
+2.5 select
+select action调用select下面的算法类
+
+BaseSelect(PreFilter, Addings[], PostFilter)
+其中，PreFilter, Addings[], PostFilter，都是类或者类列表，输入stock id，就能执行过滤，或者返回adding值
+
+详细见 select-classes
+
+2.6 test
+2.6.1 statistics
+
+2.6.2 
+
+
+
+
+
+
+

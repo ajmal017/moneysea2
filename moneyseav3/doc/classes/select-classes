@@ -1,0 +1,12 @@
+/select/
+
+
+BaseFilter:
+    :: __init__(stockid)
+    :: pass()
+    :: reason()
+    :: name()
+
+
+
+BaseSelect(PreFilter, Addings[], PostFilter)
