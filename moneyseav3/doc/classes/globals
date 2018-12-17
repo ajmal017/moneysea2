@@ -1,0 +1,56 @@
+/globals.py
+    /resources/
+        /fileparsers/
+
+Globals:
+    :: __init__(baseline = None, pricespath = None) # baseline = (year, season)
+    :: stocks()          # return dict {stockid:Stock}
+    :: getstock(stockid) # return Stock
+    :: holdedrecords()   # return HoldedRecords
+    :: types()           # return Types
+
+
+
+#. 需要支持baseline financial, 以及baseline price
+Stock:
+    :: __init__(gbls)
+    :: name()
+    :: id()
+    :: price()
+    :: swtype() #申万二级
+    :: fd()     #Setup financial data at the first call
+
+    FaData:     #see doc/design/classes/fadata
+        :: 
+
+
+HoldedRecords:
+    :: __init__(gbls)
+    :: all()
+    :: latest()  # return OneHoldedRecord
+    :: get(index) # return OneHoldedRecord
+
+
+Types:  #see doc/design/classes/types
+   :: classfyings()                                             #list of all classfying methods
+   :: mtypes(classfying)                                        #list of main types of classfying method
+   :: subtypes(classfying, mtype)                               #list of subtypes of classfying/mtype
+   :: stocks(classfying, mtype, subtype)                        #list of stocks of classfying/mtype/subtype
+   :: typeproperty(classfying, mtype, subtype)                  #type property of classfying/mtype/subtype, if subtype is None, return type property of classfying/mtype
+   :: swtype(stockid)                                           #return (mtype, subtype) of sw of this stock
+
+
+
+
+/fileparsers/
+    baseparser.py
+        ffnetease.py            # see fd
+        financialfile.py        # see fd
+        holdedstocksfile.py
+        stockidnamemapfile.py
+
+
+
+
+
+

@@ -42,10 +42,55 @@ update action 直接调用update下面的类
 2.4 holded
 
 2.5 select
-select action调用select下面的算法类
+select action调用select下面的算法类(Select类).
 
-BaseSelect(PreFilter, Addings[], PostFilter)
-其中，PreFilter, Addings[], PostFilter，都是类或者类列表，输入stock id，就能执行过滤，或者返回adding值
+BaseSelect(prefilters[], addings[], postfilters)
+prefilters[], postfilters[]: 是类列表，元素属于 BaseFilter(Stock)
+addings[]: 类列表，元素属于 BaseAdding(Stock)
+
+算法：
+. globals in class
+    _pass[] = []
+    _fails[] = []
+    _selectratio = 1/2.0
+
+. prefilters
+  对于每一只股票 (in Globals::stocks())
+    . 对于prefilters每个filter
+        if not filter.pass():
+            _fails[stockid] = filter.name()
+            break
+    . try fails[stockid] except:
+        _pass[].append(Stock)
+            
+. addings 即dratio求值
+  ads = dict()
+  对于每一个addings中的Adding:
+    ll = ads[Adding.name()] = []
+    对_pass[]中的每一个Stock:
+        if 第一个Stock:
+            ll.append(Stock)
+        else:
+            对于ll中的每一个Stock:
+                if 当前stock的dratio > Stock的dratio:
+                    ll.insert()
+                else:
+                    ll.append(当前Stock)
+                
+. 交集
+  half_ads = ads 取_selectratio
+  first = half_ads[first addings name()]
+  copy first to overlap
+
+  for s in first:
+    for every addings:
+        if not s in half_ads[adding name]
+            overlap.remove(s)
+            break
+
+. post  
+  对每一只股票in overlap ... TODO
+
 
 详细见 select-classes
 

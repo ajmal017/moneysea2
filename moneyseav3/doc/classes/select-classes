@@ -2,10 +2,16 @@
 
 
 BaseFilter:
-    :: __init__(stockid)
+    :: __init__(Stock)
     :: pass()
-    :: reason()
     :: name()
+
+
+BaseAdding:
+    :: __init__(Stock)
+    :: adding()
+    :: name() #class method
+    :; e()
 
 
 
