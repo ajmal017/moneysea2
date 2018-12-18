@@ -26,6 +26,8 @@
 . 对于算法相关的功能，actions 调用相关的算法类，算法类调用 Globals访问相应的resources
 
 
+Other helper classes: Config, utils/
+
 
 2. 详细描述
 2.1 types
@@ -62,6 +64,8 @@ addings[]: 类列表，元素属于 BaseAdding(Stock)
             break
     . try fails[stockid] except:
         _pass[].append(Stock)
+
+. addingfilters filtering
             
 . addings 即dratio求值
   ads = dict()

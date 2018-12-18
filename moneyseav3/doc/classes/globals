@@ -3,11 +3,22 @@
         /fileparsers/
 
 Globals:
-    :: __init__(baseline = None, pricespath = None) # baseline = (year, season)
-    :: stocks()          # return dict {stockid:Stock}
+    :: __init__(pricespath = None)
+    # resources
+    :: stocks(filters = None)  # return dict {stockid:Stock}, construct from stockidnamemapping file, fd data will be ready only after accessed by user
+                                # filters is a list of filter, 
+    :: filtersstat()           # return latest filters stat 
     :: getstock(stockid) # return Stock
     :: holdedrecords()   # return HoldedRecords
     :: types()           # return Types
+
+    # global settings
+    :: baseline()        # return (year,season)
+    :: setbaseline()     # change baseline = (year, season)
+
+    #private
+    :: _prices = None
+    :: _stockidnamemapping
 
 
 
@@ -18,6 +29,10 @@ Stock:
     :: id()
     :: price()
     :: swtype() #申万二级
+    :: n()
+    :: p()
+    :: seteq(name, (adding, e, dratio))
+    :: geteq(name) #return (adding, e, dratio)
     :: fd()     #Setup financial data at the first call
 
     FaData:     #see doc/design/classes/fadata
@@ -39,6 +54,12 @@ Types:  #see doc/design/classes/types
    :: typeproperty(classfying, mtype, subtype)                  #type property of classfying/mtype/subtype, if subtype is None, return type property of classfying/mtype
    :: swtype(stockid)                                           #return (mtype, subtype) of sw of this stock
 
+Prices:
+
+StockIdNameMapping:
+
+
+/resources/
 
 
 

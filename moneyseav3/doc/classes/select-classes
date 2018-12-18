@@ -2,17 +2,22 @@
 
 
 BaseFilter:
-    :: __init__(Stock)
-    :: pass()
+    :: __init__()
+    :: run(Stock)
+    :: result()         # return result code, 0 if success, 
+    :: name()
+    :: reason(code)     # return description of the code
+
+
+#every adding has its own filter to filter valid financial data
+#add adding value to Stock
+BaseAdding(BaseFilter):
+    :: __init__()
+    :: run(Stock)
+    :: adding()       #caculate adding value, and set it to FdData
+    :: selectratio()  #select ratio of this adding
     :: name()
 
 
-BaseAdding:
-    :: __init__(Stock)
-    :: adding()
-    :: name() #class method
-    :; e()
 
-
-
-BaseSelect(PreFilter, Addings[], PostFilter)
+BaseSelect(prefilters, addings, postfilters) #prefilter objects, adding objects, postfilter objects
