@@ -26,13 +26,10 @@
 . 对于算法相关的功能，actions 调用相关的算法类，算法类调用 Globals访问相应的resources
 
 
-Other helper classes: Config, utils/
-
-
 2. 详细描述
 2.1 types
-列出分类和显示分类下的股票信息, typesaction 直接访问 Globals获取 types类
-详细见 resources-classes/types
+列出分类和显示分类下的股票信息, typesaction直接访问Globals获取types类
+详细见 classes/types
 
 2.2 parse
 如果只是显示股票的基本信息，则直接 parseaction 访问 Globals获取 stock类
@@ -45,56 +42,7 @@ update action 直接调用update下面的类
 
 2.5 select
 select action调用select下面的算法类(Select类).
-
-BaseSelect(prefilters[], addings[], postfilters)
-prefilters[], postfilters[]: 是类列表，元素属于 BaseFilter(Stock)
-addings[]: 类列表，元素属于 BaseAdding(Stock)
-
-算法：
-. globals in class
-    _pass[] = []
-    _fails[] = []
-    _selectratio = 1/2.0
-
-. prefilters
-  对于每一只股票 (in Globals::stocks())
-    . 对于prefilters每个filter
-        if not filter.pass():
-            _fails[stockid] = filter.name()
-            break
-    . try fails[stockid] except:
-        _pass[].append(Stock)
-
-. addingfilters filtering
-            
-. addings 即dratio求值
-  ads = dict()
-  对于每一个addings中的Adding:
-    ll = ads[Adding.name()] = []
-    对_pass[]中的每一个Stock:
-        if 第一个Stock:
-            ll.append(Stock)
-        else:
-            对于ll中的每一个Stock:
-                if 当前stock的dratio > Stock的dratio:
-                    ll.insert()
-                else:
-                    ll.append(当前Stock)
-                
-. 交集
-  half_ads = ads 取_selectratio
-  first = half_ads[first addings name()]
-  copy first to overlap
-
-  for s in first:
-    for every addings:
-        if not s in half_ads[adding name]
-            overlap.remove(s)
-            break
-
-. post  
-  对每一只股票in overlap ... TODO
-
+BaseSelect(prefilters[], props[], postfilters)
 
 详细见 select-classes
 
@@ -102,6 +50,85 @@ addings[]: 类列表，元素属于 BaseAdding(Stock)
 2.6.1 statistics
 
 2.6.2 
+
+3. Classes Map
+3.1 Map
+
+<xxxxx> --- package xxxxx
+
+                                           MoneySeav3
+
+---------------------------------------------------------------------------------------------------------
+                                          <actions>
+  TypesAction   HoldedAction             ParseAction       SelectAction
+---------------------------------------------------------------------------------------------------------
+    
+
+                                                           algorithms
+                                                                <select>
+                                                                    BaseSelect ... ...
+
+                                                                <properties>
+                                                                    BaseFilter  BaseProperty ... ...
+                                                                    ListFilters ListProperties
+                                                                        #to return list of stocks match filters
+                                                                        #to return list of stocks with prop set
+                                            -------------------------------------------------------------
+
+                                Globals (single instance)
+
+   ::types()    ::holdedrecords()        ::getstock()           ::stocks()
+----------------------------------------------------------------------------------------------------------
+                                     <resources>
+
+    Types       HoldedRecords            Stock
+                OneHoldedRecord            FaData
+
+----------------------------------------------------------------------------------------------------------
+                                     <fileparsers>
+
+<classfy>       OneHoldedRecordFile        FFBase
+    ClassfyXml                             FFNetease
+    SwXml                                  FF10jqka
+    UserXml
+    FileTypeSw
+    FileTypeUser
+
+----------------------------------------------------------------------------------------------------------
+                                       /inputs/
+
+/classfy/classfy.xml /holded/*          /stocks/netease/* 
+/classfy/sw.xml                         /stocks/10jqka/*
+/classfy/user.xml
+/classfy/sw/*
+/classfy/user/*
+
+
+3.2 More
+
+            Globals 
+   ._prices     ._stockidnamemapping
+----------------------------------------------
+            <resources>
+    Prices      StockIdNameMapping
+----------------------------------------------
+            <fileparsers>
+                StockIdNameMappingFile
+----------------------------------------------------------------
+            /inputs/
+    /prices/*  /common/stock_id_name_map/*    
+                                             
+
+3.3 Others
+. UpdateAction => <tools>        
+    to update prices or stock financial data in netease or stock financial data in tonghuasun
+
+3.4 Tests
+. TestAction => <tests>
+
+3.5 Support classes
+. Configs
+
 
 
 

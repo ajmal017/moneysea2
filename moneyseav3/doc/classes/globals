@@ -4,11 +4,12 @@
 
 Globals:
     :: __init__(pricespath = None)
-    # resources
-    :: stocks(filters = None)  # return dict {stockid:Stock}, construct from stockidnamemapping file, fd data will be ready only after accessed by user
-                                # filters is a list of filter, 
-    :: filtersstat()           # return latest filters stat 
+    # stock resources
+    :: stocks()          # return dict of {stockid:Stocks}. Financial data may not be ready.
+    :: liststocks()
     :: getstock(stockid) # return Stock
+
+    # global resources
     :: holdedrecords()   # return HoldedRecords
     :: types()           # return Types
 
@@ -19,6 +20,8 @@ Globals:
     #private
     :: _prices = None
     :: _stockidnamemapping
+    :: _stocks #dict of {stockid:Stock}
+    :; _liststocks
 
 
 
@@ -31,8 +34,15 @@ Stock:
     :: swtype() #申万二级
     :: n()
     :: p()
-    :: seteq(name, (adding, e, dratio))
-    :: geteq(name) #return (adding, e, dratio)
+
+    :: setfail(name, reason)
+    :: getfail(name, reason)
+    :: getfails()
+    :: resetfails()
+    :: setval(name, val)
+    :: getval(name)
+    :; resetvals()
+
     :: fd()     #Setup financial data at the first call
 
     FaData:     #see doc/design/classes/fadata
@@ -59,16 +69,8 @@ Prices:
 StockIdNameMapping:
 
 
-/resources/
 
 
-
-/fileparsers/
-    baseparser.py
-        ffnetease.py            # see fd
-        financialfile.py        # see fd
-        holdedstocksfile.py
-        stockidnamemapfile.py
 
 
 
